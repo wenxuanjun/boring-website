@@ -2,7 +2,7 @@
 
 Just visit <https://wendster.com>
 
-#### If you want you build it
+### If you want you build it
 
 First of all, `nodejs` and `yarn` are required.
 
