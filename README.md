@@ -1,21 +1,34 @@
-# wendster
+# Boring Website
 
-## Project setup
+Just visit <https://wendster.com>
+
+#### If you want you build it
+
+First of all, `nodejs` and `yarn` are required.
+
+Then, clone the repository and enter it.
+
 ```
-yarn install
+git clone https://github.com/wenxuanjun/boring-website
+cd boring-website
 ```
 
-### Compiles and hot-reloads for development
+Fetch the dependencies.
+
 ```
-yarn serve
+yarn
 ```
 
-### Compiles and minifies for production
+Build it.
+
 ```
 yarn build
 ```
 
-### Lints and fixes files
+You will get the `dist` folder. Upload it to your server.
+
+Run this command if you feel like to debug it.
+
 ```
-yarn lint
+yarn serve
 ```
