@@ -3,23 +3,27 @@ import VueRouter from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+import Home from '../views/Home.vue'
+import Malageed from '../views/Malageed.vue'
+import About from '../views/About.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
+    component: Home
   },
   {
     path: '/malageed',
     name: 'malageed',
-    component: () => import(/* webpackChunkName: "malageed" */ '../views/Malageed.vue')
+    component: Malageed
   },
   {
     path: '/about',
     name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About
   }
 ]
 
