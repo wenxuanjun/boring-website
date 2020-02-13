@@ -2,6 +2,9 @@ const path = require('path')
 const fs = require('fs')
 
 module.exports = {
+  chainWebpack: config => {
+    config.plugins.delete('prefetch')
+  },
   devServer: {
     hot: true,
     host: '0.0.0.0',

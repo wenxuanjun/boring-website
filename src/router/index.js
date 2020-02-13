@@ -3,27 +3,28 @@ import VueRouter from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
-import Home from '../views/Home.vue'
-import Malageed from '../views/Malageed.vue'
-import About from '../views/About.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/malageed',
     name: 'malageed',
-    component: Malageed
+    component: () => import('../views/Malageed.vue')
+  },
+  {
+    path: '/tools',
+    name: 'tools',
+    component: () => import('../views/Tools.vue')
   },
   {
     path: '/about',
     name: 'about',
-    component: About
+    component: () => import('../views/About.vue')
   }
 ]
 
