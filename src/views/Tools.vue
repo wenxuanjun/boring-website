@@ -81,6 +81,9 @@ export default {
     };
   },
   methods: {
+    minifyImage: function(){
+      return ;
+    },
     getEvaluated: function() {
       this.evaluated = this.runKatex(
         parse(evaluate(this.evaluate_input)).toTex()
