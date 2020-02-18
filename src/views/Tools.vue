@@ -1,8 +1,11 @@
 <template>
   <v-container>
-    <v-alert type="info" colored-border border="left" dismissible>
-      These functions are still unstable so it's unwise to entangle their errors.
-    </v-alert>
+    <v-alert
+      type="info"
+      colored-border
+      border="left"
+      dismissible
+    >These functions are still unstable so it's unwise to entangle their errors.</v-alert>
     <v-row>
       <v-col cols="12">
         <v-card>
@@ -17,7 +20,7 @@
                 <v-card-text>
                   <p class="font-weight-black">这是个极其简单的计算器！</p>
                   <p>只需要把想计算的表达式输入，然后点击按钮即可（废话）。</p>
-                  <p>支持多种函数如：sin(x)、log(x, [n])等，具体为哪些请自行摸索……</p>
+                  <p>支持多种函数如：sin(x)、sqrt()、log(x, [n])等，具体为哪些请自行摸索……</p>
                 </v-card-text>
               </v-card>
             </v-dialog>
@@ -81,9 +84,6 @@ export default {
     };
   },
   methods: {
-    minifyImage: function(){
-      return ;
-    },
     getEvaluated: function() {
       this.evaluated = this.runKatex(
         parse(evaluate(this.evaluate_input)).toTex()
