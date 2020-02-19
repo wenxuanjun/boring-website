@@ -836,6 +836,46 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
+"@tensorflow/tfjs-converter@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.npm.taobao.org/@tensorflow/tfjs-converter/download/@tensorflow/tfjs-converter-1.5.2.tgz#ec1373f421313bdc6aac46d5578deb58e5093e8c"
+  integrity sha1-7BNz9CExO9xqrEbVV43rWOUJPow=
+
+"@tensorflow/tfjs-core@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.npm.taobao.org/@tensorflow/tfjs-core/download/@tensorflow/tfjs-core-1.5.2.tgz#df76752cf7c43987df1548fb69820935bd8215d7"
+  integrity sha1-33Z1LPfEOYffFUj7aYIJNb2CFdc=
+  dependencies:
+    "@types/offscreencanvas" "~2019.3.0"
+    "@types/seedrandom" "2.4.27"
+    "@types/webgl-ext" "0.0.30"
+    "@types/webgl2" "0.0.4"
+    node-fetch "~2.1.2"
+    seedrandom "2.4.3"
+
+"@tensorflow/tfjs-data@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.npm.taobao.org/@tensorflow/tfjs-data/download/@tensorflow/tfjs-data-1.5.2.tgz#04a585f71e36bda3dbffe8844a2468a0adb63efa"
+  integrity sha1-BKWF9x42vaPb/+iESiRooK22Pvo=
+  dependencies:
+    "@types/node-fetch" "^2.1.2"
+    node-fetch "~2.1.2"
+
+"@tensorflow/tfjs-layers@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.npm.taobao.org/@tensorflow/tfjs-layers/download/@tensorflow/tfjs-layers-1.5.2.tgz#8d92e8a1462f7be6b6ee9a1e5217ea3a21fbc1f9"
+  integrity sha1-jZLooUYve+a27poeUhfqOiH7wfk=
+
+"@tensorflow/tfjs@^1.5.2":
+  version "1.5.2"
+  resolved "https://registry.npm.taobao.org/@tensorflow/tfjs/download/@tensorflow/tfjs-1.5.2.tgz#d1ebd5730429ae970b65dd228c101c7bf1ca90de"
+  integrity sha1-0evVcwQprpcLZd0ijBAce/HKkN4=
+  dependencies:
+    "@tensorflow/tfjs-converter" "1.5.2"
+    "@tensorflow/tfjs-core" "1.5.2"
+    "@tensorflow/tfjs-data" "1.5.2"
+    "@tensorflow/tfjs-layers" "1.5.2"
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/@types/color-name/download/@types/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -860,6 +900,13 @@
   resolved "https://registry.npm.taobao.org/@types/minimatch/download/@types/minimatch-3.0.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fminimatch%2Fdownload%2F%40types%2Fminimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha1-PcoOPzOyAPx9ETnAzZbBJoyt/Z0=
 
+"@types/node-fetch@^2.1.2":
+  version "2.5.4"
+  resolved "https://registry.npm.taobao.org/@types/node-fetch/download/@types/node-fetch-2.5.4.tgz#5245b6d8841fc3a6208b82291119bc11c4e0ce44"
+  integrity sha1-UkW22IQfw6Ygi4IpERm8EcTgzkQ=
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*":
   version "13.7.1"
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-13.7.1.tgz#238eb34a66431b71d2aaddeaa7db166f25971a0d"
@@ -870,10 +917,30 @@
   resolved "https://registry.npm.taobao.org/@types/normalize-package-data/download/@types/normalize-package-data-2.4.0.tgz?cache=0&sync_timestamp=1580842869215&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnormalize-package-data%2Fdownload%2F%40types%2Fnormalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha1-5IbQ2XOW15vu3QpuM/RTT/a0lz4=
 
+"@types/offscreencanvas@~2019.3.0":
+  version "2019.3.0"
+  resolved "https://registry.npm.taobao.org/@types/offscreencanvas/download/@types/offscreencanvas-2019.3.0.tgz#3336428ec7e9180cf4566dfea5da04eb586a6553"
+  integrity sha1-MzZCjsfpGAz0Vm3+pdoE61hqZVM=
+
 "@types/q@^1.5.1":
   version "1.5.2"
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha1-aQoUdbhPKohP0HzXl8APXzE1bqg=
+
+"@types/seedrandom@2.4.27":
+  version "2.4.27"
+  resolved "https://registry.npm.taobao.org/@types/seedrandom/download/@types/seedrandom-2.4.27.tgz#9db563937dd86915f69092bc43259d2f48578e41"
+  integrity sha1-nbVjk33YaRX2kJK8QyWdL0hXjkE=
+
+"@types/webgl-ext@0.0.30":
+  version "0.0.30"
+  resolved "https://registry.npm.taobao.org/@types/webgl-ext/download/@types/webgl-ext-0.0.30.tgz#0ce498c16a41a23d15289e0b844d945b25f0fb9d"
+  integrity sha1-DOSYwWpBoj0VKJ4LhE2UWyXw+50=
+
+"@types/webgl2@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.npm.taobao.org/@types/webgl2/download/@types/webgl2-0.0.4.tgz#c3b0f9d6b465c66138e84e64cb3bdf8373c2c279"
+  integrity sha1-w7D51rRlxmE46E5kyzvfg3PCwnk=
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0":
   version "1.0.0"
@@ -5329,6 +5396,11 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
+node-fetch@~2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npm.taobao.org/node-fetch/download/node-fetch-2.1.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnode-fetch%2Fdownload%2Fnode-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
+  integrity sha1-q4hOjn5X44qUR1POxwb3iNF2i7U=
+
 node-forge@0.9.0:
   version "0.9.0"
   resolved "https://registry.npm.taobao.org/node-forge/download/node-forge-0.9.0.tgz?cache=0&sync_timestamp=1569524669712&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnode-forge%2Fdownload%2Fnode-forge-0.9.0.tgz#d624050edbb44874adca12bb9a52ec63cb782579"
@@ -6868,6 +6940,11 @@ seed-random@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/seed-random/download/seed-random-2.2.0.tgz#2a9b19e250a817099231a5b99a4daf80b7fbed54"
   integrity sha1-KpsZ4lCoFwmSMaW5mk2vgLf77VQ=
+
+seedrandom@2.4.3:
+  version "2.4.3"
+  resolved "https://registry.npm.taobao.org/seedrandom/download/seedrandom-2.4.3.tgz#2438504dad33917314bff18ac4d794f16d6aaecc"
+  integrity sha1-JDhQTa0zkXMUv/GKxNeU8W1qrsw=
 
 select-hose@^2.0.0:
   version "2.0.0"

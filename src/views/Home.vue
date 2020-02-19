@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="4">
-        <v-btn block href="https://demo.wendster.com" dark>点击以访问DEMO站点</v-btn>
+        <v-btn block href="http://demo.wendster.com" dark>点击以访问DEMO站点</v-btn>
         <v-card style="margin-top:20px">
           <v-card-title>最新动态</v-card-title>
           <v-card-text>

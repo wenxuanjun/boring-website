@@ -10,7 +10,7 @@
       <v-col cols="12">
         <v-card>
           <v-card-title>
-            <span>计算表达式</span>
+            <span>表达式计算</span>
             <v-dialog max-width="500px">
               <template v-slot:activator="{ on }">
                 <v-btn x-small class="ma-2" color="grey" v-on="on">Help</v-btn>
@@ -39,7 +39,7 @@
     <v-row>
       <v-col cols="12" sm="6">
         <v-card>
-          <v-card-title>求函数导函数</v-card-title>
+          <v-card-title>函数求导</v-card-title>
           <v-card-text>
             <v-text-field v-model="dericative_input">
               <template v-slot:append-outer>
