@@ -27,7 +27,7 @@ yarn build
 
 You will get the `dist` folder. Upload it to your server.
 
-Run this command if you feel like to debug it.
+Run this command if you feel like debuging it.
 
 ```
 yarn serve
