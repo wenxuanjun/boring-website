@@ -64,6 +64,29 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-card>
+          <v-card-title>OCR</v-card-title>
+          <v-card-text>
+            <v-file-input v-model="ocr_input">
+              <template v-slot:append-outer>
+                <v-btn color="primary" @click="doTesseract">Submit</v-btn>
+              </template>
+            </v-file-input>
+            <v-radio-group v-model="ocr_choose" row>
+              <v-radio label="Fast" value="fast"></v-radio>
+              <v-radio label="Normal" value="normal"></v-radio>
+              <v-radio label="Best" value="best"></v-radio>
+            </v-radio-group>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-snackbar v-model="snackbar">
+      {{ snackbar_text }}
+      <v-btn color="primary" text @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -71,10 +94,15 @@
 import "katex/dist/katex.min.css";
 import katex from "katex";
 import { rationalize, derivative, evaluate, parse } from "mathjs";
+import { createWorker } from "tesseract.js";
 
 export default {
   data() {
     return {
+      snackbar: false,
+      snackbar_text: "",
+      ocr_input: "",
+      ocr_choose: "",
       evaluated: "",
       derivatived: "",
       rationalized: "",
@@ -85,25 +113,59 @@ export default {
   },
   methods: {
     getEvaluated: function() {
-      this.evaluated = this.runKatex(
-        parse(evaluate(this.evaluate_input)).toTex()
-      );
+      try {
+        this.evaluated = this.runKatex(
+          parse(evaluate(this.evaluate_input)).toTex()
+        );
+      } catch (err) {
+        this.enableSnackbar(err);
+      }
     },
     getDerivatived: function() {
-      this.derivatived = this.runKatex(
-        derivative(this.dericative_input, "x").toTex()
-      );
+      try {
+        this.derivatived = this.runKatex(
+          derivative(this.dericative_input, "x").toTex()
+        );
+      } catch (err) {
+        this.enableSnackbar(err);
+      }
     },
     getRationalized: function() {
-      this.rationalized = this.runKatex(
-        rationalize(this.rationalize_input).toTex()
-      );
+      try {
+        this.rationalized = this.runKatex(
+          rationalize(this.rationalize_input).toTex()
+        );
+      } catch (err) {
+        this.enableSnackbar(err);
+      }
     },
     runKatex: function(input) {
       return katex.renderToString(input, {
         throwOnError: false,
         displayMode: true
       });
+    },
+    enableSnackbar: function(text) {
+      this.snackbar_text = text;
+      this.snackbar = true;
+    },
+    doTesseract: function() {
+      const worker = createWorker({
+        logger: m => window.console.log(m),
+        workerPath: "https://unpkg.zhimg.com/tesseract.js@2.0.2/dist/worker.min.js",
+        langPath: "/tesseract/" + this.ocr_choose,
+        corePath: "https://unpkg.zhimg.com/tesseract.js-core@v2.0.0/tesseract-core.wasm.js"
+      });
+      (async () => {
+        await worker.load();
+        await worker.loadLanguage("eng+chi_tra");
+        await worker.initialize("eng+chi_tra");
+        const {
+          data: { text }
+        } = await worker.recognize(this.ocr_input);
+        window.console.log(text);
+        await worker.terminate();
+      })();
     }
   }
 };
