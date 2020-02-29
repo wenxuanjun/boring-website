@@ -69,11 +69,23 @@
         <v-card>
           <v-card-title>OCR</v-card-title>
           <v-card-text>
-            <v-file-input v-model="ocr_input">
+            <v-file-input accept="image/*" v-model="ocr_input">
               <template v-slot:append-outer>
                 <v-btn color="primary" @click="doTesseract">Submit</v-btn>
               </template>
             </v-file-input>
+            <v-row>
+              <v-col cols="4">{{ ocr_status }}</v-col>
+              <v-col cols="8">
+                <v-progress-linear color="primary" height="10" v-model="ocr_progress" rounded></v-progress-linear>
+              </v-col>
+            </v-row>
+            <v-dialog v-model="ocr_dialog" max-width="500px">
+              <v-card>
+                <v-card-title>OCR Result</v-card-title>
+                <v-card-text v-html="ocr_result"></v-card-text>
+              </v-card>
+            </v-dialog>
           </v-card-text>
         </v-card>
       </v-col>
@@ -95,14 +107,18 @@ export default {
   data() {
     return {
       snackbar: false,
-      snackbar_text: "",
-      ocr_input: "",
-      evaluated: "",
-      derivatived: "",
-      rationalized: "",
-      evaluate_input: "",
-      dericative_input: "",
-      rationalize_input: ""
+      snackbar_text: null,
+      ocr_input: null,
+      ocr_status: null,
+      ocr_progress: null,
+      ocr_dialog: false,
+      ocr_result: null,
+      evaluated: null,
+      derivatived: null,
+      rationalized: null,
+      evaluate_input: null,
+      dericative_input: null,
+      rationalize_input: null
     };
   },
   methods: {
@@ -145,19 +161,23 @@ export default {
     },
     doTesseract: function() {
       const worker = createWorker({
-        logger: m => window.console.log(m),
-        workerPath: "https://unpkg.zhimg.com/tesseract.js@2.0.2/dist/worker.min.js",
         langPath: "/tesseract",
-        corePath: "https://unpkg.zhimg.com/tesseract.js-core@v2.0.0/tesseract-core.wasm.js"
+        workerPath: "https://cdn.jsdelivr.net/npm/tesseract.js@2.0.2/dist/worker.min.js",
+        corePath: "https://cdn.jsdelivr.net/npm/tesseract.js-core@v2.0.0/tesseract-core.wasm.js",
+        logger: message => {
+          this.ocr_status = message.status;
+          this.ocr_progress = message.progress * 100;
+        }
       });
       (async () => {
         await worker.load();
-        await worker.loadLanguage("eng+chi_tra");
-        await worker.initialize("eng+chi_tra");
+        await worker.loadLanguage("eng+chi_sim+chi_sim_vert");
+        await worker.initialize("eng+chi_sim+chi_sim_vert");
         const {
           data: { text }
         } = await worker.recognize(this.ocr_input);
-        window.console.log(text);
+        this.ocr_result = text.replace('\n','<br/>');
+        this.ocr_dialog = true;
         await worker.terminate();
       })();
     }
