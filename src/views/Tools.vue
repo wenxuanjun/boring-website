@@ -74,11 +74,6 @@
                 <v-btn color="primary" @click="doTesseract">Submit</v-btn>
               </template>
             </v-file-input>
-            <v-radio-group v-model="ocr_choose" row>
-              <v-radio label="Fast" value="fast"></v-radio>
-              <v-radio label="Normal" value="normal"></v-radio>
-              <v-radio label="Best" value="best"></v-radio>
-            </v-radio-group>
           </v-card-text>
         </v-card>
       </v-col>
@@ -102,7 +97,6 @@ export default {
       snackbar: false,
       snackbar_text: "",
       ocr_input: "",
-      ocr_choose: "",
       evaluated: "",
       derivatived: "",
       rationalized: "",
@@ -153,7 +147,7 @@ export default {
       const worker = createWorker({
         logger: m => window.console.log(m),
         workerPath: "https://unpkg.zhimg.com/tesseract.js@2.0.2/dist/worker.min.js",
-        langPath: "/tesseract/" + this.ocr_choose,
+        langPath: "/tesseract",
         corePath: "https://unpkg.zhimg.com/tesseract.js-core@v2.0.0/tesseract-core.wasm.js"
       });
       (async () => {
