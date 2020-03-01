@@ -74,12 +74,10 @@
                 <v-btn color="primary" @click="doTesseract">Submit</v-btn>
               </template>
             </v-file-input>
-            <v-row>
-              <v-col cols="4">{{ ocr_status }}</v-col>
-              <v-col cols="8">
-                <v-progress-linear color="primary" height="10" v-model="ocr_progress" rounded></v-progress-linear>
-              </v-col>
-            </v-row>
+            <div v-show="ocr_status_show">
+              <p class="text-capitalize font-weight-bold">{{ ocr_status }}</p>
+              <v-progress-linear color="primary" height="10" v-model="ocr_progress" rounded></v-progress-linear>
+            </div>
             <v-dialog v-model="ocr_dialog" max-width="500px">
               <v-card>
                 <v-card-title>OCR Result</v-card-title>
@@ -110,6 +108,7 @@ export default {
       snackbar_text: null,
       ocr_input: null,
       ocr_status: null,
+      ocr_status_show: false,
       ocr_progress: null,
       ocr_dialog: false,
       ocr_result: null,
@@ -160,6 +159,10 @@ export default {
       this.snackbar = true;
     },
     doTesseract: function() {
+      if(this.ocr_input == null){
+        this.enableSnackbar("Please input your image.");
+        return;
+      }
       const worker = createWorker({
         langPath: "/tesseract",
         workerPath: "https://cdn.jsdelivr.net/npm/tesseract.js@2.0.2/dist/worker.min.js",
@@ -170,15 +173,16 @@ export default {
         }
       });
       (async () => {
+        this.ocr_status_show = true;
         await worker.load();
         await worker.loadLanguage("eng+chi_sim+chi_sim_vert");
         await worker.initialize("eng+chi_sim+chi_sim_vert");
         const {
           data: { text }
         } = await worker.recognize(this.ocr_input);
-        this.ocr_result = text.replace('\n','<br/>');
         this.ocr_dialog = true;
         await worker.terminate();
+        this.ocr_status_show = false;
       })();
     }
   }
