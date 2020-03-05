@@ -175,6 +175,7 @@ export default {
         const {
           data: { text }
         } = await worker.recognize(this.ocr_input);
+	this.ocr_result = text;
         this.ocr_dialog = true;
         await worker.terminate();
         this.ocr_status_show = false;
