@@ -1,11 +1,6 @@
 <template>
   <v-container>
-    <v-alert
-      type="info"
-      colored-border
-      border="left"
-      dismissible
-    >These functions are still unstable so it's unwise to entangle their errors.</v-alert>
+    <v-alert colored-border type="info" border="left" dismissible>These functions are still unstable so it's unwise to entangle their errors.</v-alert>
     <v-row>
       <v-col cols="12">
         <v-card>
@@ -67,7 +62,7 @@
     <v-row>
       <v-col cols="12">
         <v-card>
-          <v-card-title>OCR</v-card-title>
+          <v-card-title>图片转文字（不准确）</v-card-title>
           <v-card-text>
             <v-file-input accept="image/*" v-model="ocr_input">
               <template v-slot:append-outer>
@@ -80,7 +75,7 @@
             </div>
             <v-dialog v-model="ocr_dialog" max-width="500px">
               <v-card>
-                <v-card-title>OCR Result</v-card-title>
+                <v-card-title>转换结果</v-card-title>
                 <v-card-text v-html="ocr_result"></v-card-text>
               </v-card>
             </v-dialog>
@@ -164,7 +159,7 @@ export default {
         return;
       }
       const worker = createWorker({
-        langPath: "/tesseract",
+        langPath: "https://cdn.wendster.com/tesseract",
         workerPath: "https://cdn.jsdelivr.net/npm/tesseract.js@2.0.2/dist/worker.min.js",
         corePath: "https://cdn.jsdelivr.net/npm/tesseract.js-core@v2.0.0/tesseract-core.wasm.js",
         logger: message => {
