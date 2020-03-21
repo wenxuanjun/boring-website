@@ -58,32 +58,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12">
-        <v-card>
-          <v-card-title>
-            <div>Coding</div>
-            <div style="margin-left:auto">
-              <v-btn color="secondary" @click="codeClear">Clear</v-btn>
-              <v-btn class="ml-2" color="primary" @click="codeRun">Run</v-btn>
-            </div>
-          </v-card-title>
-          <v-card-text>
-            <v-row no-gutters>
-              <v-col cols="12" sm="6">
-                <codemirror v-model="code.content" :options="code.options"></codemirror>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <div id="code-sandbox"></div>
-                <v-sheet color="grey darken-3" tile>
-                  <pre id="code-result" class="pl-3 pt-2" style="overflow:auto;height:300px"></pre>
-                </v-sheet>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
     <v-snackbar v-model="snackbar.show">
       {{ snackbar.text }}
       <v-btn color="primary" text @click="snackbar = false">Close</v-btn>
@@ -92,14 +66,10 @@
 </template>
 
 <script>
-import "katex/dist/katex.min.css";
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/panda-syntax.css";
+import 'katex/dist/katex.min.css';
 import katex from "katex";
 import { rationalize, derivative, evaluate, parse } from "mathjs";
 import { createWorker } from "tesseract.js";
-import { codemirror } from "vue-codemirror";
-import "codemirror/mode/javascript/javascript.js";
 
 export default {
   data() {
@@ -121,23 +91,8 @@ export default {
       rationalized: null,
       evaluate_input: null,
       dericative_input: null,
-      rationalize_input: null,
-      code: {
-        content: null,
-        result: null,
-        options: {
-          mode: "text/javascript",
-          theme: "panda-syntax",
-          indentUnit: 4,
-          lineNumbers: true,
-          smartIndent: true,
-          indentWithTabs: true
-        }
-      }
+      rationalize_input: null
     };
-  },
-  components: {
-    codemirror
   },
   methods: {
     getEvaluated: function() {
@@ -176,25 +131,6 @@ export default {
     enableSnackbar: function(text) {
       this.snackbar.text = text;
       this.snackbar.show = true;
-    },
-    codeClear: function() {
-      this.code.content = "";
-    },
-    codeRun: function() {
-      let func = `
-        function print(data) {
-          var back=document.getElementById('code-result').innerHTML;
-          document.getElementById('code-result').innerHTML = back + data;
-        }
-      `;
-      let text = func + this.code.content;
-      window.console.log(text);
-      let script = document.createElement("script");
-      script.type = "text/javascript";
-      script.text = text;
-      document.getElementById("code-result").innerHTML = "";
-      document.getElementById("code-sandbox").appendChild(script);
-      document.getElementById("code-sandbox").innerHTML = "";
     },
     doTesseract: function() {
       if (this.ocr.input == null) {
