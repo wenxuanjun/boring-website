@@ -14,7 +14,7 @@
       <template v-slot:append>
         <v-card flat tile>
           <v-card-text>
-            <small><a class="white--text" src="http://www.beian.miit.gov.cn">湘ICP备19013090号-1</a></small>
+            <small><a class="white--text" href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">湘ICP备19013090号-1</a></small>
           </v-card-text>
         </v-card>
       </template>
