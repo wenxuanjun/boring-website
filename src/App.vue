@@ -11,16 +11,30 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <template v-slot:append>
-        <v-card flat tile>
-          <v-card-text>
-            <small><a class="white--text" href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">湘ICP备19013090号-1</a></small>
-          </v-card-text>
-        </v-card>
-      </template>
     </v-navigation-drawer>
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-spacer></v-spacer>
+      <v-btn icon @click="initSettings" @click.stop="settings.dialog = true">
+        <v-icon>{{ settings.icon }}</v-icon>
+      </v-btn>
+      <v-dialog v-model="settings.dialog" max-width="600px">
+        <v-card>
+          <v-card-title class="headline">设置</v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-form>
+                <v-select v-model="settings.theme.value" :items="settings.theme.items" label="主题"></v-select>
+              </v-form>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text @click="settings.dialog = false">取消</v-btn>
+            <v-btn color="primary" text @click="saveSettings">保存</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-app-bar>
     <v-content>
       <v-container>
@@ -31,14 +45,20 @@
 </template>
 
 <script>
-import { mdiHome, mdiTeach, mdiTools, mdiInformation } from "@mdi/js";
+import { mdiHome, mdiTeach, mdiTools, mdiInformation, mdiCog } from "@mdi/js";
 
 export default {
   props: {
     source: String
   },
-  created() {
-    this.$vuetify.theme.dark = true;
+  methods: {
+    initSettings: function() {
+      this.settings.theme.value = this.$vuetify.theme.dark;
+    },
+    saveSettings: function() {
+      this.$vuetify.theme.dark = this.settings.theme.value;
+      this.settings.dialog = false;
+    }
   },
   data() {
     return {
@@ -48,6 +68,17 @@ export default {
         { title: "Tools", icon: mdiTools, link: "/tools" },
         { title: "About", icon: mdiInformation, link: "/about" }
       ],
+      settings: {
+        icon: mdiCog,
+        dialog: false,
+        theme: {
+          value: false,
+          items: [
+            { text: "亮色", value: false },
+            { text: "暗色", value: true }
+          ]
+        }
+      },
       drawer: null
     };
   }
