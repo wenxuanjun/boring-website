@@ -19,4 +19,4 @@ after_script:
 
 env:
  global:
-   - GH_REF: github.com/wenxuanjun/wendster.github.io.git
+   - GH_REF: github.com/wenxuanjun/wenxuanjun.github.io.git
