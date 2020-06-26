@@ -6,7 +6,7 @@ node_js:
 cache: yarn
 
 script:
-  - yarn built
+  - yarn build
 
 after_script:
   - cd ./dist
