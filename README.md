@@ -1,6 +1,6 @@
 # Boring Website
 
-Just visit <https://wendster.com>
+Just visit <https://wenxuanjun.github.io>
 
 ### If you want you build it
 
