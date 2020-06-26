@@ -6,4 +6,17 @@ node_js:
 cache: yarn
 
 script:
-  - yarn build
+  - yarn built
+
+after_script:
+  - cd ./dist
+  - git init
+  - git config user.name "wenxuanjun"
+  - git config user.email "wendster@163.com"
+  - git add .
+  - git commit -m "Auto Build"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+
+env:
+ global:
+   - GH_REF: github.com/wenxuanjun/wendster.github.io.git
