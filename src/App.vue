@@ -20,7 +20,7 @@
       </v-btn>
       <v-dialog v-model="settings.dialog" max-width="600px">
         <v-card>
-          <v-card-title class="headline">设置</v-card-title>
+          <v-card-title>设置</v-card-title>
           <v-card-text>
             <v-container>
               <v-form>
@@ -65,7 +65,7 @@ export default {
       list_items: [
         { title: "Home", icon: mdiHome, link: "/" },
         { title: "Malageed", icon: mdiTeach, link: "/malageed" },
-        { title: "Tools", icon: mdiTools, link: "/tools" },
+        { title: "Tool", icon: mdiTools, link: "/tool" },
         { title: "About", icon: mdiInformation, link: "/about" }
       ],
       settings: {

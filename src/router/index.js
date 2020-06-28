@@ -12,14 +12,19 @@ export default new VueRouter({
       component: () => import('../views/Home.vue')
     },
     {
+      path: '/post/:id',
+      name: 'post',
+      component: () => import('../views/Post.vue')
+    },
+    {
       path: '/malageed',
       name: 'malageed',
       component: () => import('../views/Malageed.vue')
     },
     {
-      path: '/tools',
-      name: 'tools',
-      component: () => import('../views/Tools.vue')
+      path: '/tool',
+      name: 'tool',
+      component: () => import('../views/Tool.vue')
     },
     {
       path: '/about',
