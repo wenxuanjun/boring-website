@@ -560,7 +560,7 @@
     </p>
 
     <v-fab-transition>
-      <v-btn fixed bottom right fab color="grey darken-4" v-scroll="onScroll" @click="toTop" v-show="fab">
+      <v-btn fixed bottom right fab v-scroll="onScroll" @click="toTop" v-show="fab">
         <v-icon>{{ icon }}</v-icon>
       </v-btn>
     </v-fab-transition>

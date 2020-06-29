@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card>
-      <v-card-title></v-card-title>
+      <v-card-title>{{ postData }}</v-card-title>
       <v-card-text>
         <div class="text-body-1" v-html="postText" />
       </v-card-text>
@@ -21,12 +21,15 @@ export default {
       const parser = new MarkdownIt();
       parser.use(prism);
       return parser.render(
-        require("../assets/blog/" + this.$route.params.id + ".md")
+        require("../blog/markdown/" + this.$route.params.id + ".md")
       );
     }
   },
   data() {
     return {
+      postData: require("../blog/posts.json")[
+        this.$route.params.id
+      ],
       postText: this.getPostText()
     };
   }
