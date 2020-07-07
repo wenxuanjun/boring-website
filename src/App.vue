@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
-        <v-list-item v-for="item in list_items" :key="item.title" :to="item.link" link>
+        <v-list-item v-for="item in list_items" :key="item.title" :to="item.link">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -37,9 +37,7 @@
       </v-dialog>
     </v-app-bar>
     <v-content>
-      <v-container>
-        <router-view />
-      </v-container>
+      <router-view />
     </v-content>
   </v-app>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card>
-      <v-card-title>{{ postData }}</v-card-title>
+      <v-card-title>{{ postData.title }}</v-card-title>
       <v-card-text>
         <div class="text-body-1" v-html="postText" />
       </v-card-text>
@@ -13,6 +13,12 @@
 import MarkdownIt from "markdown-it";
 import prism from "markdown-it-prism";
 import "prismjs/components/prism-bash";
+import "prismjs/components/prism-c";
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-cpp";
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-markup";
+import "prismjs/components/prism-python";
 import "../scss/prism.css";
 
 export default {
