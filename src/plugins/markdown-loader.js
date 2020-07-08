@@ -1,5 +1,3 @@
-function markdownLoader(value) {
-    return value;
+module.exports = function(value) {
+    return 'module.exports = ' + JSON.stringify(value)
 }
-
-module.exports = markdownLoader;
