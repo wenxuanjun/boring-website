@@ -26,10 +26,9 @@ export default {
     getPostText: function() {
       const parser = new MarkdownIt();
       parser.use(prism);
-      parser.render(
+      return parser.render(
         require("../blog/markdown/" + this.$route.params.id + ".md")
       );
-      return require("../blog/markdown/" + this.$route.params.id + ".md");
     }
   },
   data() {
