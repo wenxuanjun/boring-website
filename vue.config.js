@@ -18,14 +18,7 @@ module.exports = {
   configureWebpack: config => {
     config.module.rules.push({
       test: /\.md$/,
-      use: [
-        {
-          loader: "html-loader"
-        },
-        {
-          loader: require.resolve("./src/plugins/markdown-loader")
-        }
-      ],
+      use: [require.resolve("./src/plugins/markdown-loader")],
     });
   }
 }
