@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-data-iterator :items="postsData" :items-per-page.sync="itemsPerPage" :page="page" hide-default-footer>
+    <v-data-iterator :items="postsData.reverse()" :items-per-page.sync="itemsPerPage" :page="page" hide-default-footer>
       <template v-slot:default="props">
         <v-card class="my-4" v-for="(postData, index) in props.items" :key="postData.name" :to="{ name: 'post', params: { id: postsData.length - index - 1 }}">
           <v-card-title>{{ postData.title }}</v-card-title>
@@ -20,7 +20,7 @@ export default {
     return {
       page: 1,
       itemsPerPage: 6,
-      postsData: require("../blog/posts.json").reverse()
+      postsData: require("../blog/posts.json")
     };
   },
   computed: {
