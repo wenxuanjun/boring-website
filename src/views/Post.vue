@@ -33,9 +33,7 @@ export default {
   },
   data() {
     return {
-      postData: require("../blog/posts.json")[
-        this.$route.params.id
-      ],
+      postData: require("../blog/posts.json")[this.$route.params.id],
       postText: this.getPostText()
     };
   }
