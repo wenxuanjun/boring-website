@@ -49,6 +49,9 @@ export default {
   props: {
     source: String
   },
+  created() {
+    document.body.removeChild(document.getElementById("app-loader"));
+  },
   methods: {
     initSettings: function() {
       this.settings.theme.value = this.$vuetify.theme.dark;
