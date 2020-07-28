@@ -1,3 +1,16 @@
+<style>
+blockquote {
+  color: #666;
+  border-left: 4px solid #ddd;
+  font-style: italic;
+  padding: 10px 15px;
+  margin: 10px 0;
+}
+blockquote > p {
+  margin-bottom: 0 !important;
+}
+</style>
+
 <template>
   <v-container>
     <v-card>
