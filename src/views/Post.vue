@@ -1,4 +1,12 @@
 <style>
+img {
+  max-width: 80%;
+}
+@media screen and (max-width: 960px) {
+  img {
+    max-width: 100%;
+  }
+}
 blockquote {
   color: #666;
   border-left: 4px solid #ddd;
@@ -36,19 +44,19 @@ import "../scss/prism.css";
 
 export default {
   methods: {
-    getPostText: function() {
+    getPostText: function () {
       const parser = new MarkdownIt();
       parser.use(prism);
       return parser.render(
         require("../blog/markdown/" + this.$route.params.id + ".md")
       );
-    }
+    },
   },
   data() {
     return {
-      postData: require("../blog/posts.json")[this.$route.params.id],
-      postText: this.getPostText()
+      postData: require("../blog/posts.json")[this.$route.params.id - 1],
+      postText: this.getPostText(),
     };
-  }
+  },
 };
 </script>

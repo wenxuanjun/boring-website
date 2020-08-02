@@ -1,3 +1,8 @@
+@media (prefers-color-scheme: dark) {
+  body { 
+      background: #222; 
+  }
+}
 @-webkit-keyframes enter {
     0% {
       opacity: 0;

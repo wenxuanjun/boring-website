@@ -73,7 +73,7 @@ export default {
         icon: mdiCog,
         dialog: false,
         theme: {
-          value: false,
+          value: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
           items: [
             { text: "亮色", value: false },
             { text: "暗色", value: true }
