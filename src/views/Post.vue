@@ -68,7 +68,7 @@ export default {
       postData: require("../blog/posts.json")[this.$route.params.id - 1],
       postText: this.getPostText(),
       vssue: {
-        title: "Vssue Demo",
+        title: "No: " + this.$route.params.id,
         options: {
           api: GithubV3,
           owner: "wenxuanjun",
