@@ -1,42 +1,21 @@
-<style>
-img {
-  max-width: 80%;
-}
-@media screen and (max-width: 960px) {
-  img {
-    max-width: 100%;
-  }
-}
-blockquote {
-  color: #666;
-  border-left: 4px solid #ddd;
-  font-style: italic;
-  padding: 10px 15px;
-  margin: 10px 0;
-}
-blockquote > p {
-  margin-bottom: 0 !important;
-}
-</style>
-
 <template>
   <v-container>
     <v-card>
       <v-card-title>{{ postData.title }}</v-card-title>
       <v-card-text>
-        <div class="text-body-1" v-html="postText" />
+        <div class="markdown-body" v-html="postText" />
       </v-card-text>
     </v-card>
     <v-card class="mt-4">
       <v-card-text>
-        <Vssue :title="title" :options="options"/>
+        <Vssue :title="vssue.title" :options="vssue.options"/>
       </v-card-text>
     </v-card>
   </v-container>
 </template>
 
 <script>
-import { VssueComponent } from "vssue";
+import { VssueComponent } from "../plugins/vssue";
 import GithubV3 from "@vssue/api-github-v3";
 import MarkdownIt from "markdown-it";
 import prism from "markdown-it-prism";
@@ -47,8 +26,9 @@ import "prismjs/components/prism-cpp";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-markup";
 import "prismjs/components/prism-python";
-import "../scss/prism.css";
-import "vssue/dist/vssue.css";
+import "../styles/prism.css";
+import "../styles/vssue.css";
+import "../styles/markdown.css";
 
 export default {
   components: {
