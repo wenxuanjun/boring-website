@@ -38,7 +38,6 @@ export default {
     return {
       news_group: [
         { title: "[新增] 博客评论", subtitle: "畅所欲言，无拘无束，各抒己见，和盘托出（大雾）" },
-        { title: "[修复] 博客图片无法加载", subtitle: "现一并丢至Github，附赠jsDelivr的CDN，美滋滋" },
         { title: "[新增] 主题设置", subtitle: "昼铄不暗，夜昏不耀" },
         { title: "[新增] 图片转文字", subtitle: "纯本地处理，超低识别率，值得你拥有" },
         { title: "[新增] 回滚悬浮按钮", subtitle: "支持回滚的Malageed简直如德芙一般丝滑" },
