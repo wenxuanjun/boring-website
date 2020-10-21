@@ -1,11 +1,5 @@
 <template>
   <v-container>
-    <v-alert
-      colored-border
-      type="info"
-      border="left"
-      dismissible
-    >These functions are still unstable so it's unwise to entangle their errors.</v-alert>
     <v-row>
       <v-col cols="12">
         <v-card>
@@ -61,7 +55,7 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn @click="doTesseract">Go</v-btn>
+                  <v-btn text @click="doTesseract">Go</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
