@@ -47,7 +47,7 @@
               <p class="text-capitalize font-weight-bold">{{ ocr.status }}</p>
               <v-progress-linear color="primary" height="10" v-model="ocr.progress" rounded></v-progress-linear>
             </div>
-            <v-dialog v-model="ocr.dialog.setting" persistent max-width="500px">
+            <v-dialog v-model="ocr.dialog.setting" max-width="500px">
               <v-card>
                 <v-card-title>参数设置</v-card-title>
                 <v-card-text>
