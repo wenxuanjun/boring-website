@@ -4,10 +4,10 @@ module.exports = {
   productionSourceMap: false,
   chainWebpack: config => {
     config.plugins.delete('prefetch'),
-    config.module.rule('md')
-      .test(/\.md/)
-      .use('./src/plugins/markdown-loader')
-      .loader('./src/plugins/markdown-loader')
+      config.module.rule('md')
+        .test(/\.md/)
+        .use('./src/plugins/markdown-loader')
+        .loader('./src/plugins/markdown-loader')
   },
   css: {
     extract: false
@@ -24,7 +24,10 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new HardSourceWebpackPlugin(),
-      new BundleAnalyzerPlugin()
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        reportFilename: 'report.html'
+      })
     ]
   }
 }
