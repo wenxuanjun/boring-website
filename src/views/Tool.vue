@@ -80,7 +80,7 @@
 
 <script>
 import "katex/dist/katex.min.css";
-import katex from "katex";
+import katex from 'katex/dist/katex.mjs'
 import { rationalize, derivative, evaluate, parse } from "mathjs";
 import { createWorker } from "tesseract.js";
 

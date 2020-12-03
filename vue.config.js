@@ -1,7 +1,13 @@
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
   productionSourceMap: false,
   chainWebpack: config => {
-    config.plugins.delete('prefetch')
+    config.plugins.delete('prefetch'),
+    config.module.rule('md')
+      .test(/\.md/)
+      .use('./src/plugins/markdown-loader')
+      .loader('./src/plugins/markdown-loader')
   },
   css: {
     extract: false
@@ -15,10 +21,10 @@ module.exports = {
   "transpileDependencies": [
     "vuetify"
   ],
-  configureWebpack: config => {
-    config.module.rules.push({
-      test: /\.md$/,
-      use: [require.resolve("./src/plugins/markdown-loader")],
-    });
+  configureWebpack: {
+    plugins: [
+      new HardSourceWebpackPlugin(),
+      new BundleAnalyzerPlugin()
+    ]
   }
 }
