@@ -1,13 +1,12 @@
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require('compression-webpack-plugin');
+const productionGzipExtensions = /\.(js|css|json|md|html|ico)(\?.*)?$/i;
+
 module.exports = {
   productionSourceMap: false,
   chainWebpack: config => {
-    config.plugins.delete('prefetch'),
-      config.module.rule('md')
-        .test(/\.md/)
-        .use('./src/plugins/markdown-loader')
-        .loader('./src/plugins/markdown-loader')
+    config.plugins.delete('prefetch')
   },
   css: {
     extract: false
@@ -23,11 +22,27 @@ module.exports = {
   ],
   configureWebpack: {
     plugins: [
-      new HardSourceWebpackPlugin(),
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true
+          }
+        }
+      }),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         reportFilename: 'report.html'
+      }),
+      new CompressionPlugin({
+        test: productionGzipExtensions
       })
-    ]
+    ],
+    module: {
+      rules: [
+        {test: /\.js$/,use: ['thread-loader']},
+        {test: /\.md$/,use: ['./src/plugins/markdown-loader']}
+      ]
+    }
   }
 }
