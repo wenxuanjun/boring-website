@@ -30,7 +30,6 @@
     "@vue/cli-plugin-eslint": "~5.0.0-alpha.3",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~5.0.0-alpha.3",
-    "compression-webpack-plugin": "^7.1.2",
     "eslint": "^7.15.0",
     "eslint-plugin-vue": "^7.2.0",
     "sass": "^1.19.0",

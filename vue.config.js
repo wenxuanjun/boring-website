@@ -1,6 +1,5 @@
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CompressionPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = /\.(js|css|json|md|html|ico)(\?.*)?$/i;
 
 module.exports = {
@@ -15,7 +14,7 @@ module.exports = {
     hot: true,
     host: '0.0.0.0',
     compress: true,
-    disableHostCheck: true,
+    disableHostCheck: true
   },
   "transpileDependencies": [
     "vuetify"
@@ -23,19 +22,18 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new TerserPlugin({
+        parallel: 4,
         terserOptions: {
           compress: {
             drop_console: true,
-            drop_debugger: true
+            drop_debugger: true,
+            pure_funcs: ['console.log']
           }
         }
       }),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         reportFilename: 'report.html'
-      }),
-      new CompressionPlugin({
-        test: productionGzipExtensions
       })
     ],
     module: {
