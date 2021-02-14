@@ -22,7 +22,7 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new TerserPlugin({
-        parallel: 4,
+        parallel: 8,
         terserOptions: {
           compress: {
             drop_console: true,
@@ -38,7 +38,7 @@ module.exports = {
     ],
     module: {
       rules: [
-        {test: /\.js$/,use: ['thread-loader']},
+		{test: /\.js$/,use: ['thread-loader']},
         {test: /\.md$/,use: ['./src/plugins/markdown-loader']}
       ]
     }

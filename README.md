@@ -1,7 +1,5 @@
 # Boring Website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0787f4aa-9c56-4a6d-84a3-0e23441c954f/deploy-status)]()
-
 Just visit <https://wendster.run>
 
 ### If you want you build it
