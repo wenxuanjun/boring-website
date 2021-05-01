@@ -7,7 +7,10 @@
             <span>表达式计算</span>
           </v-card-title>
           <v-card-text>
-            <v-text-field v-model="evaluate_input" @keyup.enter="getEvaluated"></v-text-field>
+            <v-text-field
+              v-model="evaluate_input"
+              @keyup.enter="getEvaluated"
+            ></v-text-field>
             <div v-html="evaluated"></div>
           </v-card-text>
         </v-card>
@@ -18,7 +21,10 @@
         <v-card>
           <v-card-title>函数求导</v-card-title>
           <v-card-text>
-            <v-text-field v-model="dericative_input" @keyup.enter="getDerivatived"></v-text-field>
+            <v-text-field
+              v-model="dericative_input"
+              @keyup.enter="getDerivatived"
+            ></v-text-field>
             <div v-html="derivatived"></div>
           </v-card-text>
         </v-card>
@@ -27,7 +33,10 @@
         <v-card>
           <v-card-title>化简表达式（慢）</v-card-title>
           <v-card-text>
-            <v-text-field v-model="rationalize_input" @keyup.enter="getRationalized"></v-text-field>
+            <v-text-field
+              v-model="rationalize_input"
+              @keyup.enter="getRationalized"
+            ></v-text-field>
             <div v-html="rationalized"></div>
           </v-card-text>
         </v-card>
@@ -45,13 +54,22 @@
             </v-file-input>
             <div v-show="ocr.status_show">
               <p class="text-capitalize font-weight-bold">{{ ocr.status }}</p>
-              <v-progress-linear color="primary" height="10" v-model="ocr.progress" rounded></v-progress-linear>
+              <v-progress-linear
+                color="primary"
+                height="10"
+                v-model="ocr.progress"
+                rounded
+              ></v-progress-linear>
             </div>
             <v-dialog v-model="ocr.dialog.setting" max-width="500px">
               <v-card>
                 <v-card-title>参数设置</v-card-title>
                 <v-card-text>
-                  <v-select v-model="ocr.quality" :items="ocr.settings.quality" label="模型质量"></v-select>
+                  <v-select
+                    v-model="ocr.quality"
+                    :items="ocr.settings.quality"
+                    label="模型质量"
+                  ></v-select>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
@@ -69,10 +87,38 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-card>
+          <v-card-title>项目筛选</v-card-title>
+          <v-card-text>
+            <v-textarea
+              outlined
+              label="原始内容"
+              v-model="filter.text"
+            ></v-textarea>
+            <v-btn color="primary" block @click="doFilterList">Submit</v-btn>
+            <v-list-item-group dense class="mt-3">
+              <v-list-item v-for="(item, key) in filter.array" :key="key" @click="doFilterRemove(key)">
+                <v-list-item-content>
+                  <v-list-item-title v-text="item"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
     <v-snackbar v-model="snackbar.show">
       {{ snackbar.text }}
       <template v-slot:action="{ attrs }">
-        <v-btn color="primary" text v-bind="attrs" @click="snackbar.show = false">Close</v-btn>
+        <v-btn
+          color="primary"
+          text
+          v-bind="attrs"
+          @click="snackbar.show = false"
+          >Close</v-btn
+        >
       </template>
     </v-snackbar>
   </v-container>
@@ -80,7 +126,7 @@
 
 <script>
 import "katex/dist/katex.min.css";
-import katex from 'katex/dist/katex.mjs'
+import katex from "katex/dist/katex.mjs";
 import { rationalize, derivative, evaluate, parse } from "mathjs";
 import { createWorker } from "tesseract.js";
 
@@ -103,8 +149,12 @@ export default {
           result: false,
         },
         settings: {
-          quality: ["fast","normal","best"]
-        }
+          quality: ["fast", "normal", "best"],
+        },
+      },
+      filter: {
+        text: null,
+        array: [],
       },
       evaluated: null,
       derivatived: null,
@@ -152,6 +202,23 @@ export default {
       this.snackbar.text = text;
       this.snackbar.show = true;
     },
+    doFilterList: function () {
+      var array = [];
+      this.filter.text
+        .trim()
+        .split("\n")
+        .forEach(function (text) {
+          array.push(text);
+        });
+      this.filter.array = array;
+    },
+    doFilterRemove: function (key) {
+      this.filter.array.splice(key, 1);
+      var text = "";
+      for(var i = 0,len=this.filter.array.length; i < len; i++)
+        text += this.filter.array[i] + "\n";
+      this.filter.text = text;
+    },
     preTesseract: function () {
       if (this.ocr.input == null)
         this.enableSnackbar("Please upload your picture.");
@@ -160,9 +227,13 @@ export default {
     doTesseract: function () {
       this.ocr.dialog.setting = false;
       const worker = createWorker({
-        langPath: "https://cdn.jsdelivr.net/gh/wenxuanjun/CDN@master/files/ocrdata/" + this.ocr.quality,
-        workerPath: "https://cdn.jsdelivr.net/npm/tesseract.js@2.1.3/dist/worker.min.js",
-        corePath: "https://cdn.jsdelivr.net/npm/tesseract.js-core@v2.2.0/tesseract-core.wasm.js",
+        langPath:
+          "https://cdn.jsdelivr.net/gh/wenxuanjun/CDN@master/files/ocrdata/" +
+          this.ocr.quality,
+        workerPath:
+          "https://cdn.jsdelivr.net/npm/tesseract.js@2.1.3/dist/worker.min.js",
+        corePath:
+          "https://cdn.jsdelivr.net/npm/tesseract.js-core@v2.2.0/tesseract-core.wasm.js",
         cacheMethod: "none",
         logger: (message) => {
           this.ocr.status = message.status;
