@@ -1,5 +1,5 @@
 const TerserPlugin = require('terser-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = /\.(js|css|json|md|html|ico)(\?.*)?$/i;
 
 module.exports = {
@@ -24,6 +24,9 @@ module.exports = {
       new TerserPlugin({
         parallel: 8,
         terserOptions: {
+          format: {
+            comments: false,
+          },
           compress: {
             drop_console: true,
             drop_debugger: true,
@@ -31,15 +34,20 @@ module.exports = {
           }
         }
       }),
-      new BundleAnalyzerPlugin({
-        analyzerMode: 'static',
-        reportFilename: 'report.html'
+      new CompressionWebpackPlugin({
+        filename: '[path][base].br',
+        algorithm: 'brotliCompress',
+        test: productionGzipExtensions,
+        compressionOptions: {
+          level: 11
+        },
+        minRatio: 0.8
       })
     ],
     module: {
       rules: [
-		{test: /\.js$/,use: ['thread-loader']},
-        {test: /\.md$/,use: ['./src/plugins/markdown-loader']}
+        { test: /\.js$/, use: ['thread-loader'] },
+        { test: /\.md$/, use: ['./src/plugins/markdown-loader'] }
       ]
     }
   }

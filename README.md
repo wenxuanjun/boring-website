@@ -1,6 +1,6 @@
 # Boring Website
 
-Just visit <https://wendster.run>
+Just visit <https://wendster.fun>
 
 ### If you want you build it
 

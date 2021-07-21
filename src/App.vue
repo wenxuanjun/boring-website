@@ -36,22 +36,26 @@
         </v-card>
       </v-dialog>
     </v-app-bar>
-    <v-content>
+    <v-content :style="content_style">
       <router-view />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import { mdiHome, mdiTeach, mdiTools, mdiInformation, mdiCog } from "@mdi/js";
+import { mdiHome, mdiTools, mdiInformation, mdiCog } from "@mdi/js";
 
 export default {
   props: {
     source: String
   },
   created() {
-    document.body.removeChild(document.getElementById("app-loader"));
-    this.$vuetify.theme.dark = this.settings.theme.value;
+    try {
+      document.body.removeChild(document.getElementById("app-loader"));
+      this.$vuetify.theme.dark = this.settings.theme.value;
+    } catch {
+      return;
+    }
   },
   methods: {
     initSettings: function() {
@@ -62,11 +66,19 @@ export default {
       this.settings.dialog = false;
     }
   },
+  computed: {
+    content_style: function() {
+      let image = this.$vuetify.theme.dark ? 'url(' + require('./assets/image/dark.jpg') + ')' : 'url(' + require('./assets/image/light.jpg') + ')';
+      return {
+        backgroundSize: 'cover',
+        backgroundImage: image
+      }
+    }
+  },
   data() {
     return {
       list_items: [
         { title: "Home", icon: mdiHome, link: "/" },
-        { title: "Malageed", icon: mdiTeach, link: "/malageed" },
         { title: "Tool", icon: mdiTools, link: "/tool" },
         { title: "About", icon: mdiInformation, link: "/about" }
       ],

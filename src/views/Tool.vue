@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
-        <v-card>
+      <v-col md="4" offset-md="2">
+        <v-card class="mb-4">
           <v-card-title>
             <span>表达式计算</span>
           </v-card-title>
@@ -14,11 +14,7 @@
             <div v-html="evaluated"></div>
           </v-card-text>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12" sm="6">
-        <v-card>
+        <v-card class="mb-4">
           <v-card-title>函数求导</v-card-title>
           <v-card-text>
             <v-text-field
@@ -28,8 +24,6 @@
             <div v-html="derivatived"></div>
           </v-card-text>
         </v-card>
-      </v-col>
-      <v-col cols="12" sm="6">
         <v-card>
           <v-card-title>化简表达式（慢）</v-card-title>
           <v-card-text>
@@ -41,10 +35,8 @@
           </v-card-text>
         </v-card>
       </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
-        <v-card>
+      <v-col md="4">
+        <v-card class="mb-4">
           <v-card-title>图片转文字（不准确）</v-card-title>
           <v-card-text>
             <v-file-input accept="image/*" v-model="ocr.input">
@@ -85,10 +77,6 @@
             </v-dialog>
           </v-card-text>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
         <v-card>
           <v-card-title>项目筛选</v-card-title>
           <v-card-text>
@@ -99,7 +87,11 @@
             ></v-textarea>
             <v-btn color="primary" block @click="doFilterList">Submit</v-btn>
             <v-list-item-group dense class="mt-3">
-              <v-list-item v-for="(item, key) in filter.array" :key="key" @click="doFilterRemove(key)">
+              <v-list-item
+                v-for="(item, key) in filter.array"
+                :key="key"
+                @click="doFilterRemove(key)"
+              >
                 <v-list-item-content>
                   <v-list-item-title v-text="item"></v-list-item-title>
                 </v-list-item-content>
@@ -215,7 +207,7 @@ export default {
     doFilterRemove: function (key) {
       this.filter.array.splice(key, 1);
       var text = "";
-      for(var i = 0,len=this.filter.array.length; i < len; i++)
+      for (var i = 0, len = this.filter.array.length; i < len; i++)
         text += this.filter.array[i] + "\n";
       this.filter.text = text;
     },

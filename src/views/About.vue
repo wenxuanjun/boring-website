@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" sm="4">
-        <v-card>
+      <v-col md="8" offset-md="2">
+        <v-card class="my-4">
           <v-card-title>最新动态</v-card-title>
           <v-divider></v-divider>
           <v-list two-line>
@@ -14,19 +14,17 @@
             </v-list-item>
           </v-list>
         </v-card>
-      </v-col>
-      <v-col cols="12" sm="8">
-      <v-card>
-      <v-card-title>关于</v-card-title>
-      <v-card-text>
-        <p class="text-button">What is this</p>
-        <p>This is a boring website created by wendster.</p>
-        <p class="text-button">What can I do here</p>
-        <p>Nothing but find functions by yourself.</p>
-        <p class="text-button">Why I am here</p>
-        <p>I do not know.</p>
-      </v-card-text>
-    </v-card>
+        <v-card>
+          <v-card-title>关于</v-card-title>
+          <v-card-text>
+            <p class="text-button">What is this</p>
+            <p>This is a boring website created by wendster.</p>
+            <p class="text-button">What can I do here</p>
+            <p>Nothing but find functions by yourself.</p>
+            <p class="text-button">Why I am here</p>
+            <p>I do not know.</p>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
