@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col md="8" offset-md="2">
-        <v-card class="my-4">
+      <v-col cols="12" md="8" offset-md="2">
+        <v-card class="my-md-8 pa-md-4 mb-4">
           <v-card-title>最新动态</v-card-title>
           <v-divider></v-divider>
           <v-list two-line>
@@ -14,7 +14,7 @@
             </v-list-item>
           </v-list>
         </v-card>
-        <v-card>
+        <v-card class="pa-md-4">
           <v-card-title>关于</v-card-title>
           <v-card-text>
             <p class="text-button">What is this</p>
@@ -35,7 +35,6 @@ export default {
   data() {
     return {
       news_group: [
-        { title: "[新增] 博客评论", subtitle: "畅所欲言，无拘无束，各抒己见，和盘托出（大雾）" },
         { title: "[新增] 主题设置", subtitle: "昼铄不暗，夜昏不耀" },
         { title: "[新增] 图片转文字", subtitle: "纯本地处理，超低识别率，值得你拥有" },
         { title: "[新增] 回滚悬浮按钮", subtitle: "支持回滚的Malageed简直如德芙一般丝滑" },

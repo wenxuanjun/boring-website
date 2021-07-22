@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col md="8" offset-md="2">
+      <v-col cols="12" md="8" offset-md="2">
         <v-data-iterator :items="postsData" :items-per-page.sync="itemsPerPage" :page="page" sort-by="id" sort-desc hide-default-footer>
           <template v-slot:default="props">
             <v-card class="pa-md-4 my-md-8 my-4" v-for="postData in props.items" :key="postData.id" :to="{ name: 'post', params: { id: postData.id }}">

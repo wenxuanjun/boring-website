@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col md="4" offset-md="2">
-        <v-card class="mb-4">
+      <v-col cols="12" md="4" offset-md="2">
+        <v-card class="my-md-8 pa-md-4 mb-4">
           <v-card-title>
             <span>表达式计算</span>
           </v-card-title>
@@ -14,7 +14,7 @@
             <div v-html="evaluated"></div>
           </v-card-text>
         </v-card>
-        <v-card class="mb-4">
+        <v-card class="mb-md-8 pa-md-4 mb-4">
           <v-card-title>函数求导</v-card-title>
           <v-card-text>
             <v-text-field
@@ -24,7 +24,7 @@
             <div v-html="derivatived"></div>
           </v-card-text>
         </v-card>
-        <v-card>
+        <v-card class="pa-md-4">
           <v-card-title>化简表达式（慢）</v-card-title>
           <v-card-text>
             <v-text-field
@@ -35,8 +35,8 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col md="4">
-        <v-card class="mb-4">
+      <v-col cols="12" md="4">
+        <v-card class="my-md-8 pa-md-4 mb-4">
           <v-card-title>图片转文字（不准确）</v-card-title>
           <v-card-text>
             <v-file-input accept="image/*" v-model="ocr.input">
@@ -77,7 +77,7 @@
             </v-dialog>
           </v-card-text>
         </v-card>
-        <v-card>
+        <v-card class="pa-md-4">
           <v-card-title>项目筛选</v-card-title>
           <v-card-text>
             <v-textarea
