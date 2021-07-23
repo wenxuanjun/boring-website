@@ -1,41 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" md="4" offset-md="2">
-        <v-card class="my-md-8 pa-md-4 mb-4">
-          <v-card-title>
-            <span>表达式计算</span>
-          </v-card-title>
-          <v-card-text>
-            <v-text-field
-              v-model="evaluate_input"
-              @keyup.enter="getEvaluated"
-            ></v-text-field>
-            <div v-html="evaluated"></div>
-          </v-card-text>
-        </v-card>
-        <v-card class="mb-md-8 pa-md-4 mb-4">
-          <v-card-title>函数求导</v-card-title>
-          <v-card-text>
-            <v-text-field
-              v-model="dericative_input"
-              @keyup.enter="getDerivatived"
-            ></v-text-field>
-            <div v-html="derivatived"></div>
-          </v-card-text>
-        </v-card>
-        <v-card class="pa-md-4">
-          <v-card-title>化简表达式（慢）</v-card-title>
-          <v-card-text>
-            <v-text-field
-              v-model="rationalize_input"
-              @keyup.enter="getRationalized"
-            ></v-text-field>
-            <div v-html="rationalized"></div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="8" offset-md="2">
         <v-card class="my-md-8 pa-md-4 mb-4">
           <v-card-title>图片转文字（不准确）</v-card-title>
           <v-card-text>
@@ -117,9 +83,6 @@
 </template>
 
 <script>
-import "katex/dist/katex.min.css";
-import katex from "katex/dist/katex.mjs";
-import { rationalize, derivative, evaluate, parse } from "mathjs";
 import { createWorker } from "tesseract.js";
 
 export default {
@@ -147,49 +110,10 @@ export default {
       filter: {
         text: null,
         array: [],
-      },
-      evaluated: null,
-      derivatived: null,
-      rationalized: null,
-      evaluate_input: null,
-      dericative_input: null,
-      rationalize_input: null,
+      }
     };
   },
   methods: {
-    getEvaluated: function () {
-      try {
-        this.evaluated = this.runKatex(
-          parse(evaluate(this.evaluate_input)).toTex()
-        );
-      } catch (err) {
-        this.enableSnackbar(err);
-      }
-    },
-    getDerivatived: function () {
-      try {
-        this.derivatived = this.runKatex(
-          derivative(this.dericative_input, "x").toTex()
-        );
-      } catch (err) {
-        this.enableSnackbar(err);
-      }
-    },
-    getRationalized: function () {
-      try {
-        this.rationalized = this.runKatex(
-          rationalize(this.rationalize_input).toTex()
-        );
-      } catch (err) {
-        this.enableSnackbar(err);
-      }
-    },
-    runKatex: function (input) {
-      return katex.renderToString(input, {
-        throwOnError: false,
-        displayMode: true,
-      });
-    },
     enableSnackbar: function (text) {
       this.snackbar.text = text;
       this.snackbar.show = true;

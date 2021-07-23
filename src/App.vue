@@ -8,6 +8,7 @@
 }
 .v-card {
   border-radius: 12px !important;
+  width: 100%
 }
 </style>
 
