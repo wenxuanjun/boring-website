@@ -1,4 +1,4 @@
-<style lang="scss">
+<style>
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
@@ -8,7 +8,6 @@
 }
 .v-card {
   border-radius: 12px !important;
-  width: 100%
 }
 </style>
 

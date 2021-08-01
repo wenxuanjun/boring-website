@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="8" offset-md="2">
-        <v-card class="mt-md-8 pa-md-4">
+        <v-card class="my-md-8 pa-md-4">
           <v-card-title class="text-md-h5 pb-md-8">{{ postData.title }}</v-card-title>
           <v-card-text>
             <div class="markdown-body" v-html="postText" />
