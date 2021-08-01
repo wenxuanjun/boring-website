@@ -453,7 +453,6 @@ blockquote > p {
 .markdown-body code,
 .markdown-body pre {
   font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-  font-size: 12px;
 }
 
 .markdown-body code {
