@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@mdi/js": "^5.9.55",
-    "compression-webpack-plugin": "@6.1.1",
+    "compression-webpack-plugin": "^6.1.1",
     "core-js": "^3.6.5",
     "markdown-it": "^12.1.0",
     "markdown-it-prism": "^2.1.8",
