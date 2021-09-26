@@ -1,18 +1,5 @@
-<style>
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-.child-view {
-  position: absolute;
-  transition: all .5s cubic-bezier(.5,0,.1,1);
-}
-.v-card {
-  border-radius: 12px !important;
-}
-</style>
-
 <template>
-  <v-app id="app">
+  <v-app>
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list nav dense>
         <v-list-item v-for="item in list_items" :key="item.title" :to="item.link">
@@ -50,9 +37,7 @@
       </v-dialog>
     </v-app-bar>
     <v-content :style="content_style">
-      <transition name="fade">
-        <router-view class="child-view"></router-view>
-      </transition>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
@@ -69,7 +54,7 @@ export default {
       document.body.removeChild(document.getElementById("app-loader"));
       this.$vuetify.theme.dark = this.settings.theme.value;
     } catch {
-      console.log("Nice day!")
+      console.log("Have a nice day!")
     }
   },
   methods: {
