@@ -17,6 +17,11 @@ export default new VueRouter({
             component: () => import(/* webpackChunkName: "post" */ '../views/Post.vue')
         },
         {
+            path: '/malageed',
+            name: 'malageed',
+            component: () => import(/* webpackChunkName: "malageed" */ '../views/Malageed.vue')
+        },
+        {
             path: '/tool',
             name: 'tool',
             component: () => import(/* webpackChunkName: "tool" */ '../views/Tool.vue')

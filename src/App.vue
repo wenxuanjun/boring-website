@@ -1,3 +1,14 @@
+<style>
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.fade-child {
+  transition: all .5s cubic-bezier(.5,0,.1,1);
+}
+.v-card {
+  border-radius: 12px !important;
+}
+</style>
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" app clipped>
@@ -37,13 +48,15 @@
       </v-dialog>
     </v-app-bar>
     <v-content :style="content_style">
-      <router-view></router-view>
+      <transition name="fade">
+        <router-view class="fade-child"></router-view>
+      </transition>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import { mdiHome, mdiTools, mdiInformation, mdiCog } from "@mdi/js";
+import { mdiHome, mdiTeach, mdiTools, mdiInformation, mdiCog } from "@mdi/js";
 
 export default {
   props: {
@@ -79,6 +92,7 @@ export default {
     return {
       list_items: [
         { title: "Home", icon: mdiHome, link: "/" },
+        { title: "Malageed", icon: mdiTeach, link: "/malageed" },
         { title: "Tool", icon: mdiTools, link: "/tool" },
         { title: "About", icon: mdiInformation, link: "/about" }
       ],
