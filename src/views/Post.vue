@@ -19,20 +19,21 @@
 </template>
 
 <script>
-import { VssueComponent } from "../plugins/vssue";
-import GithubV3 from "@vssue/api-github-v3";
-import MarkdownIt from "markdown-it";
-import prism from "markdown-it-prism";
-import "prismjs/components/prism-bash";
-import "prismjs/components/prism-c";
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-cpp";
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-markup";
-import "prismjs/components/prism-python";
-import "../styles/prism.css";
-import "../styles/vssue.css";
-import "../styles/markdown.css";
+import { VssueComponent } from "../plugins/vssue"
+import GithubV3 from "@vssue/api-github-v3"
+import MarkdownIt from "markdown-it"
+import pangu from 'markdown-it-pangu'
+import prism from "markdown-it-prism"
+import "prismjs/components/prism-bash"
+import "prismjs/components/prism-c"
+import "prismjs/components/prism-clike"
+import "prismjs/components/prism-cpp"
+import "prismjs/components/prism-javascript"
+import "prismjs/components/prism-markup"
+import "prismjs/components/prism-python"
+import "../styles/prism.css"
+import "../styles/vssue.css"
+import "../styles/markdown.css"
 
 export default {
   components: {
@@ -40,11 +41,11 @@ export default {
   },
   methods: {
     getPostText: function () {
-      const parser = new MarkdownIt();
-      parser.use(prism);
+      const parser = new MarkdownIt()
+      parser.use(pangu).use(prism)
       return parser.render(
         require("../blog/markdown/" + this.$route.params.id + ".md")
-      );
+      )
     },
   },
   data() {

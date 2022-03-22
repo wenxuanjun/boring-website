@@ -1,54 +1,45 @@
 {
-  "name": "wendster",
-  "version": "0.1.0",
+  "name": "boring-website",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "webpack-dev-server --config ./config/webpack.dev.js",
+    "build": "webpack --config ./config/webpack.prod.js"
   },
   "dependencies": {
-    "@mdi/js": "^5.9.55",
+    "@fontsource/roboto": "^4.5.3",
+    "@mdi/js": "^6.5.95",
     "@vssue/api-github-v3": "^1.4.7",
-    "compression-webpack-plugin": "^6.1.1",
-    "core-js": "^3.6.5",
-    "markdown-it": "^12.1.0",
-    "markdown-it-prism": "^2.1.8",
+    "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^9.2.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "core-js": "^3.21.1",
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "markdown-it": "^12.3.2",
+    "markdown-it-pangu": "^1.0.2",
+    "markdown-it-prism": "^2.2.3",
     "nprogress": "^0.2.0",
-    "tesseract.js": "^2.1.4",
-    "vssue": "^1.4.8",
-    "vue": "^2.6.11",
-    "vue-router": "^3.5.2",
-    "vuetify": "^2.4.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
-    "vue-cli-plugin-vuetify": "~2.4.1",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.7.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 20%"
-  ]
+    "style-loader": "^3.3.1",
+    "tesseract.js": "^2.1.4",
+    "timeago.js": "^4.0.2",
+    "typeface-roboto": "^1.1.13",
+    "url-loader": "^4.1.1",
+    "vssue": "^1.4.8",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.6",
+    "vue-style-loader": "^4.1.2",
+    "vue-router": "^3.5.2",
+    "vue-template-compiler": "^2.6.14",
+    "vuetify": "^2.6.4",
+    "vuetify-loader": "^1.7.0",
+    "webpack": "^5.70.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0"
+  }
 }

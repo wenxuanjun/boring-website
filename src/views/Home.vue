@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       page: 1,
-      itemsPerPage: 5,
+      itemsPerPage: 6,
       postsData: require("../blog/posts.json"),
     };
   },
