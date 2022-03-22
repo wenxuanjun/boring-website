@@ -40,7 +40,7 @@ export default {
         { title: "[新增] 回滚悬浮按钮", subtitle: "支持回滚的Malageed简直如德芙一般丝滑" },
         { title: "[修复] 标点半／全角不一致", subtitle: "统一格式至少能让枯燥的Malageed美观一点" }
       ]
-    };
+    }
   }
 };
 </script>

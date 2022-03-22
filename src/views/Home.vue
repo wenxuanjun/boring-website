@@ -24,13 +24,13 @@ export default {
     return {
       page: 1,
       itemsPerPage: 6,
-      postsData: require("../blog/posts.json"),
-    };
+      postsData: require("../blog/posts.json")
+    }
   },
   computed: {
     numberOfPages() {
-      return Math.ceil(this.postsData.length / this.itemsPerPage);
-    },
-  },
-};
+      return Math.ceil(this.postsData.length / this.itemsPerPage)
+    }
+  }
+}
 </script>

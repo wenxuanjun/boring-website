@@ -52,9 +52,7 @@
 import { mdiHome, mdiHumanMaleBoard, mdiTools, mdiInformation, mdiCog } from "@mdi/js"
 
 export default {
-  props: {
-    source: String
-  },
+  props: { source: String },
   created() {
     try {
       document.body.removeChild(document.getElementById("app-loader"))

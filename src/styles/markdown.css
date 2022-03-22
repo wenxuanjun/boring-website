@@ -1,3 +1,7 @@
+.markdown-body h1, h2, h3, h4, h5, h6 {
+    padding-bottom: 16px;
+}
+
 .markdown-body a :hover {
     outline-width: 0;
 }
@@ -38,9 +42,25 @@
 
 .markdown-body blockquote {
     margin-left: 0;
-    padding: .1em 0 .1em 1.5em;
+    margin-bottom: 16px;
+    padding-left: 16px;
     color: rgb(128, 128, 128);
+    background-color: rgba(128, 128, 128, .05);
     border-left: .3em solid rgba(128, 128, 128, .6);
+}
+
+.markdown-body blockquote > p {
+    padding: 16px 0;
+}
+
+.markdown-body p {
+    margin: 0;
+    font-size: .95rem;
+    padding-bottom: 16px;
+}
+
+.markdown-body hr {
+    margin-bottom: 16px;
 }
 
 .markdown-body ul, ol {

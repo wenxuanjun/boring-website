@@ -17,17 +17,18 @@
 
 .markdown-body pre {
 	padding: 1em;
-	margin: .5em 0;
+	margin-bottom: 16px;
 	overflow: auto;
 }
 
 .markdown-body pre > code {
+	padding: 0;
 	background-color: rgba(255, 255, 255, 0) !important;
 }
 
 .markdown-body :not(pre) > code, pre {
 	color: #cfcfcf;
-	background: #363636;
+	background: #282828;
 }
 
 .markdown-body :not(pre) > code {

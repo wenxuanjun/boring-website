@@ -34,12 +34,12 @@ module.exports = {
         use: 'vue-loader'
       },
       {
-        test: /\.jpg$/,
-        use: 'url-loader'
-      },
-      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.md$/,
+        use: ['./src/plugins/markdown-loader']
       },
       {
         test: /\.(woff|woff2)$/,
@@ -49,8 +49,13 @@ module.exports = {
         }
       },
       {
-        test: /\.md$/,
-        use: ['./src/plugins/markdown-loader']
+        test: /\.jpg$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            esModule: false
+          }
+        }]
       },
       {
         test: /\.s[ac]ss$/,

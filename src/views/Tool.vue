@@ -90,7 +90,7 @@ export default {
     return {
       snackbar: {
         show: false,
-        text: null,
+        text: null
       },
       ocr: {
         input: null,
@@ -101,75 +101,62 @@ export default {
         result: null,
         dialog: {
           setting: false,
-          result: false,
+          result: false
         },
         settings: {
-          quality: ["fast", "normal", "best"],
-        },
+          quality: ["fast", "normal", "best"]
+        }
       },
       filter: {
         text: null,
-        array: [],
+        array: []
       }
-    };
+    }
   },
   methods: {
     enableSnackbar: function (text) {
-      this.snackbar.text = text;
-      this.snackbar.show = true;
+      this.snackbar.text = text
+      this.snackbar.show = true
     },
     doFilterList: function () {
-      var array = [];
-      this.filter.text
-        .trim()
-        .split("\n")
-        .forEach(function (text) {
-          array.push(text);
-        });
-      this.filter.array = array;
+      var array = []
+      this.filter.text.trim().split("\n").forEach((text) => array.push(text))
+      this.filter.array = array
     },
     doFilterRemove: function (key) {
-      this.filter.array.splice(key, 1);
-      var text = "";
+      this.filter.array.splice(key, 1)
+      var text = ""
       for (var i = 0, len = this.filter.array.length; i < len; i++)
-        text += this.filter.array[i] + "\n";
-      this.filter.text = text;
+        text += this.filter.array[i] + "\n"
+      this.filter.text = text
     },
     preTesseract: function () {
-      if (this.ocr.input == null)
-        this.enableSnackbar("Please upload your picture.");
-      else this.ocr.dialog.setting = true;
+      this.ocr.input == null ? this.enableSnackbar("Please upload your picture.") : this.ocr.dialog.setting = true
     },
     doTesseract: function () {
-      this.ocr.dialog.setting = false;
+      this.ocr.dialog.setting = false
       const worker = createWorker({
-        langPath:
-          "https://cdn.jsdelivr.net/gh/wenxuanjun/CDN@master/files/ocrdata/" +
-          this.ocr.quality,
-        workerPath:
-          "https://cdn.jsdelivr.net/npm/tesseract.js@2.1.3/dist/worker.min.js",
-        corePath:
-          "https://cdn.jsdelivr.net/npm/tesseract.js-core@v2.2.0/tesseract-core.wasm.js",
+        langPath: "https://cdn.jsdelivr.net/gh/wenxuanjun/CDN@master/files/ocrdata/" + this.ocr.quality,
+        workerPath: "https://cdn.jsdelivr.net/npm/tesseract.js@2.1.3/dist/worker.min.js",
+        corePath: "https://cdn.jsdelivr.net/npm/tesseract.js-core@v2.2.0/tesseract-core.wasm.js",
         cacheMethod: "none",
         logger: (message) => {
-          this.ocr.status = message.status;
-          this.ocr.progress = message.progress * 100;
-        },
-      });
+          this.ocr.status = message.status
+          this.ocr.progress = message.progress * 100
+        }
+      })
       (async () => {
-        this.ocr.status_show = true;
-        await worker.load();
-        await worker.loadLanguage("eng+chi_sim+chi_sim_vert");
-        await worker.initialize("eng+chi_sim+chi_sim_vert");
-        const {
-          data: { text },
-        } = await worker.recognize(this.ocr.input);
-        this.ocr.result = text;
-        this.ocr.dialog.result = true;
-        await worker.terminate();
-        this.ocr.status_show = false;
-      })();
-    },
-  },
-};
+        this.ocr.status_show = true
+        await worker.load()
+        await worker.loadLanguage("eng+chi_sim+chi_sim_vert")
+        await worker.initialize("eng+chi_sim+chi_sim_vert")
+        const { data: { text } } = await worker.recognize(this.ocr.input);
+        this.ocr.result = text
+        this.ocr.dialog.result = true
+        await worker.terminate()
+        this.ocr.status_show = false
+      })()
+    }
+  }
+}
 </script>

@@ -10,7 +10,7 @@
         </v-card>
         <v-card class="my-md-8 mt-4">
           <v-card-text>
-            <Vssue :title="vssue.title" :options="vssue.options" />
+            <VssueComponent :title="vssue.title" :options="vssue.options" />
           </v-card-text>
         </v-card>
       </v-col>
@@ -36,9 +36,7 @@ import "../styles/vssue.css"
 import "../styles/markdown.css"
 
 export default {
-  components: {
-    Vssue: VssueComponent,
-  },
+  components: { VssueComponent },
   methods: {
     getPostText: function () {
       const parser = new MarkdownIt()
@@ -46,7 +44,7 @@ export default {
       return parser.render(
         require("../blog/markdown/" + this.$route.params.id + ".md")
       )
-    },
+    }
   },
   data() {
     return {
@@ -60,9 +58,9 @@ export default {
           repo: "boring-website",
           clientId: "7311afee29388c58d4c6",
           clientSecret: "e4b9ddbd593f326e04d54363bef4bcecc25110f0"
-        },
+        }
       }
-    };
-  },
-};
+    }
+  }
+}
 </script>

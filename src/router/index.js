@@ -9,27 +9,27 @@ export default new VueRouter({
         {
             path: '/',
             name: 'home',
-            component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
+            component: () => import('@/views/Home.vue')
         },
         {
             path: '/post/:id',
             name: 'post',
-            component: () => import(/* webpackChunkName: "post" */ '../views/Post.vue')
+            component: () => import('@/views/Post.vue')
         },
         {
             path: '/malageed',
             name: 'malageed',
-            component: () => import(/* webpackChunkName: "malageed" */ '../views/Malageed.vue')
+            component: () => import('@/views/Malageed.vue')
         },
         {
             path: '/tool',
             name: 'tool',
-            component: () => import(/* webpackChunkName: "tool" */ '../views/Tool.vue')
+            component: () => import('@/views/Tool.vue')
         },
         {
             path: '/about',
             name: 'about',
-            component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+            component: () => import('@/views/About.vue')
         }
     ]
 })
