@@ -24,9 +24,9 @@
   padding: 10px 20px;
   font-size: 1.05;
   font-weight: bold;
-  color: #757575;
+  color: #888;
   background-color: transparent;
-  border: 2px solid #757575;
+  border: 2px solid #888;
   border-radius: 10px;
 }
 .vssue .vssue-button:disabled {
@@ -42,14 +42,14 @@
   border-color: #a3aab1;
 }
 .vssue .vssue-button:not(:disabled).vssue-button-primary {
-  color: #757575;
-  border-color: #757575;
+  color: #888;
+  border-color: #888;
 }
 .vssue .vssue-icon {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
-  fill: #757575;
+  fill: #888;
   overflow: hidden;
 }
 .vssue .vssue-icon-loading {
@@ -103,7 +103,7 @@
   top: 0;
   padding: 10px 20px;
   width: 100%;
-  color: #757575;
+  color: #888;
   border: solid 2px #d6d6d6;
   border-radius: 5px;
   background-color: #f8f8f8;
@@ -113,13 +113,13 @@
   top: 0;
   left: 0;
   height: 2px;
-  background-color: #757575;
+  background-color: #888;
 }
 .vssue .vssue-status {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 10px;
-  color: #757575;
+  color: #888;
 }
 .vssue .vssue-status .vssue-icon {
   font-size: 1.4em;
@@ -311,11 +311,11 @@
   cursor: pointer;
   display: inline-block;
   margin-right: 8px;
-  color: #757575;
+  color: #888;
 }
 .vssue .vssue-comments .vssue-comment .vssue-comment-footer .vssue-comment-operations {
   float: right;
-  color: #757575;
+  color: #888;
 }
 .vssue .vssue-comments .vssue-comment .vssue-comment-footer .vssue-comment-operations .vssue-comment-operation {
   cursor: pointer;
@@ -381,7 +381,7 @@
   pointer-events: none;
 }
 .vssue .vssue-pagination .vssue-pagination-link:not(.disabled) {
-  color: #757575;
+  color: #888;
   font-weight: 500;
   cursor: pointer;
 }
@@ -393,7 +393,7 @@
 .vssue :not(.vssue-comment-content) a {
   cursor: pointer;
   font-weight: 500;
-  color: #757575;
+  color: #888;
   text-decoration: none;
 }
 .vssue :not(.vssue-comment-content) hr {

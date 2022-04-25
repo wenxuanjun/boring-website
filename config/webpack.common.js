@@ -35,14 +35,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['vue-style-loader', 'css-loader']
       },
       {
         test: /\.md$/,
         use: ['./src/plugins/markdown-loader']
       },
       {
-        test: /\.(woff|woff2)$/,
+        test: /\.(woff|woff2|ttf)$/,
         type: 'asset/resource',
         generator: {
           filename: './fonts/[name][ext]'
@@ -65,10 +65,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass'),
-              sassOptions: {
-                indentedSyntax: true // optional
-              }
+              implementation: require('sass')
             }
           }
         ]

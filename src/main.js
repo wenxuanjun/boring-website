@@ -4,6 +4,7 @@ import vuetify from '@/plugins/vuetify'
 import router from '@/router/index'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import '@/styles/variables.scss'
 
 import '@fontsource/roboto/latin-100.css'
 import '@fontsource/roboto/latin-300.css'

@@ -16,42 +16,43 @@
 }
 
 .markdown-body pre {
+	color: #cfcfcf;
+	background: #363636;
 	padding: 1em;
+	margin-top: 0;
 	margin-bottom: 16px;
 	overflow: auto;
 }
 
 .markdown-body pre > code {
 	padding: 0;
+	font-size: .9em;
 	background-color: rgba(255, 255, 255, 0) !important;
 }
 
-.markdown-body :not(pre) > code, pre {
-	color: #cfcfcf;
-	background: #282828;
-}
-
 .markdown-body :not(pre) > code {
-	padding: .2em .6em;
+	color: #cfcfcf;
+	background: #363636;
 	border-radius: .5em;
-	font-size: 0.8em;
+	padding: .2em .6em;
+	font-size: 0.85em;
 	font-weight: 700;
 	white-space: normal;
+}
+
+@media (min-width: 1200px) {
+	.markdown-body pre > code {
+    	font-size: .95em;
+	}
+	.markdown-body :not(pre) > code {
+		font-size: .9em;
+	}
 }
 
 @media(prefers-color-scheme: light) {
 	.markdown-body :not(pre) > code {
 		color: #905;
 		background: #faf0ee;
-	}
-}
-
-@media (min-width: 1200px) {
-	.markdown-body code, pre {
-    	font-size: .98em;
-	}
-	.markdown-body :not(pre) > code {
-		font-size: .9em;
 	}
 }
 

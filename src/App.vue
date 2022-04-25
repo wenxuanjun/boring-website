@@ -19,9 +19,9 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar app clipped-left>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Navigation Drawer" />
       <v-spacer></v-spacer>
-      <v-btn icon @click="initSettings" @click.stop="settings.dialog = true">
+      <v-btn icon @click="initSettings" @click.stop="settings.dialog = true" aria-label="Open Settings">
         <v-icon>{{ settings.icon }}</v-icon>
       </v-btn>
       <v-dialog v-model="settings.dialog" max-width="600px">
@@ -43,7 +43,7 @@
       </v-dialog>
     </v-app-bar>
     <v-main :style="content_style">
-      <router-view class="fade-child"></router-view>
+      <router-view />
     </v-main>
   </v-app>
 </template>
