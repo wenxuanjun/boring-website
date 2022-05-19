@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="mt-md-2 mb-md-6">
       <v-col cols="12" md="8" offset-md="2">
         <v-row>
-          <v-col cols="12" md="6">
-            <v-card class="mt-md-8 mt-4 pa-md-4">
+          <v-col cols="12">
+            <v-card class="mt-4 pa-md-4">
               <v-card-title>
                 <span>表达式计算</span>
               </v-card-title>
@@ -14,8 +14,8 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" md="6">
-            <v-card class="mt-md-8 mt-4 pa-md-4">
+          <v-col cols="12">
+            <v-card class="mt-4 pa-md-4">
               <v-card-title>函数求导</v-card-title>
               <v-card-text>
                 <v-text-field v-model="dericative_input" @keyup.enter="getDerivatived"></v-text-field>
@@ -23,7 +23,7 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12">
             <v-card class="mt-4 pa-md-4">
               <v-card-title>化简表达式（慢）</v-card-title>
               <v-card-text>
@@ -32,7 +32,7 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12">
             <v-card class="mt-4 pa-md-4">
               <v-card-title>图片转文字（不准确）</v-card-title>
               <v-card-text>
