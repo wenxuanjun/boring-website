@@ -12,12 +12,12 @@
           <template v-slot:default="props">
             <v-card
               class="pa-md-4 my-md-8 mb-4"
-              v-for="postData in props.items"
-              :key="postData.id"
-              :to="{ name: 'post', params: { id: postData.id }}"
+              v-for="(postData, key) in props.items"
+              :key="key"
+              :to="{ name: 'post', params: { id: postData.raw.id }}"
             >
-              <v-card-title>{{ postData.title }}</v-card-title>
-              <v-card-text>{{ postData.time }}</v-card-text>
+              <v-card-title>{{ postData.raw.title }}</v-card-title>
+              <v-card-text>{{ postData.raw.time }}</v-card-text>
             </v-card>
           </template>
           <template v-slot:footer>
@@ -30,9 +30,13 @@
 </template>
 
 <script>
+import { VDataIterator } from 'vuetify/labs/VDataIterator'
 import postData from "@/blog/posts.json"
 
 export default {
+  components: {
+    VDataIterator,
+  },
   data() {
     return {
       page: 1,

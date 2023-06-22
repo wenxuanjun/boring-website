@@ -5,12 +5,7 @@
         <v-card class="my-md-8 pa-md-4">
           <v-card-title class="text-md-h5 pb-md-8">{{ postData.title }}</v-card-title>
           <v-card-text>
-            <div class="markdown-body" v-html="postText" />
-          </v-card-text>
-        </v-card>
-        <v-card class="my-md-8 mt-4">
-          <v-card-text>
-            <VssueComponent :title="vssue.title" :options="vssue.options" />
+            <div class="markdown-body" v-html="postText"></div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -19,8 +14,6 @@
 </template>
 
 <script>
-import { VssueComponent } from "../plugins/vssue"
-import GithubV3 from "@vssue/api-github-v3"
 import MarkdownIt from "markdown-it"
 import pangu from 'markdown-it-pangu'
 import prism from "markdown-it-prism"
@@ -32,35 +25,25 @@ import "prismjs/components/prism-javascript"
 import "prismjs/components/prism-markup"
 import "prismjs/components/prism-python"
 import "prismjs/components/prism-kotlin"
-import "../styles/prism.css"
-import "../styles/vssue.css"
-import "../styles/markdown.css"
+import "@/styles/prism.css"
+import "@/styles/markdown.css"
+import postData from "@/blog/posts.json"
 
 export default {
-  components: { VssueComponent },
   methods: {
     getPostText: function () {
       const parser = new MarkdownIt()
       parser.use(pangu).use(prism)
-      return parser.render(
-        require("../blog/markdown/" + this.$route.params.id + ".md")
-      )
+      return parser.render((() => {
+        const markdownFiles = import.meta.glob("@/blog/markdown/*.md", { as: 'raw', eager: true })
+        return Object.entries(markdownFiles).find(([key]) => key.includes(this.$route.params.id))[1]
+      })())
     }
   },
   data() {
     return {
-      postData: require("../blog/posts.json")[this.$route.params.id - 1],
+      postData: postData,
       postText: this.getPostText(),
-      vssue: {
-        title: "No: " + this.$route.params.id,
-        options: {
-          api: GithubV3,
-          owner: "wenxuanjun",
-          repo: "boring-website",
-          clientId: "7311afee29388c58d4c6",
-          clientSecret: "e4b9ddbd593f326e04d54363bef4bcecc25110f0"
-        }
-      }
     }
   }
 }

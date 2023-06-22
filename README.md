@@ -4,7 +4,7 @@ Just visit <https://wendster.fun>
 
 ### If you want you build it
 
-First of all, `nodejs` and `yarn` are required.
+First of all, `nodejs` and `pnpm` are required.
 
 Then, clone the repository and enter it.
 
@@ -16,13 +16,13 @@ cd boring-website
 Fetch the dependencies.
 
 ```
-yarn
+pnpm i
 ```
 
 Build it.
 
 ```
-yarn build
+pnpm build
 ```
 
 You will get the `dist` folder. Upload it to your server.
@@ -30,5 +30,5 @@ You will get the `dist` folder. Upload it to your server.
 Run this command if you feel like debuging it.
 
 ```
-yarn serve
+pnpm serve
 ```
