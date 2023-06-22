@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from '@/App.vue'
 import vuetify from '@/plugins/vuetify'
 import router from '@/router/index'
@@ -13,7 +13,7 @@ import '@fontsource/roboto/latin-500.css'
 import '@fontsource/roboto/latin-700.css'
 import '@fontsource/roboto/latin-900.css'
 
-Vue.config.productionTip = false
+const app = createApp(App)
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
@@ -25,8 +25,4 @@ router.afterEach(() => {
   NProgress.done()
 })
 
-new Vue({
-  vuetify,
-  router,
-  render: h => h(App)
-}).$mount('#app')
+app.use(vuetify).use(router).mount('#app')

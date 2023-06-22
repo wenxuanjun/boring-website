@@ -1,35 +1,32 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
-Vue.use(VueRouter)
-
-export default new VueRouter({
-    mode: 'history',
-    routes: [
-        {
-            path: '/',
-            name: 'home',
-            component: () => import('@/views/Home.vue')
-        },
-        {
-            path: '/post/:id',
-            name: 'post',
-            component: () => import('@/views/Post.vue')
-        },
-        {
-            path: '/malageed',
-            name: 'malageed',
-            component: () => import('@/views/Malageed.vue')
-        },
-        {
-            path: '/tool',
-            name: 'tool',
-            component: () => import('@/views/Tool.vue')
-        },
-        {
-            path: '/about',
-            name: 'about',
-            component: () => import('@/views/About.vue')
-        }
-    ]
+export default createRouter({
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: () => import('@/views/Home.vue')
+    },
+    {
+      path: '/post/:id',
+      name: 'post',
+      component: () => import('@/views/Post.vue')
+    },
+    {
+      path: '/malageed',
+      name: 'malageed',
+      component: () => import('@/views/Malageed.vue')
+    },
+    {
+      path: '/tool',
+      name: 'tool',
+      component: () => import('@/views/Tool.vue')
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/About.vue')
+    }
+  ]
 })

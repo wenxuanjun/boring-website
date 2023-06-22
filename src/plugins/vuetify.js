@@ -1,10 +1,12 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import { createVuetify } from 'vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
+import { md3 } from 'vuetify/blueprints'
 
-Vue.use(Vuetify)
-
-export default new Vuetify({
+export default createVuetify({
+  blueprint: md3,
   icons: {
-    iconfont: 'mdiSvg'
+    defaultSet: 'mdi',
+    aliases,
+    sets: { mdi }
   }
 })

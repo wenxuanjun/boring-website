@@ -6,24 +6,15 @@
 
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app clipped>
-      <v-list nav dense>
-        <v-list-item v-for="item in list_items" :key="item.title" :to="item.link">
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar app clipped-left>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Navigation Drawer" />
-      <v-spacer></v-spacer>
-      <v-btn icon @click="initSettings" @click.stop="settings.dialog = true" aria-label="Open Settings">
-        <v-icon>{{ settings.icon }}</v-icon>
-      </v-btn>
+    <v-app-bar>
+      <template v-slot:prepend>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Navigation Drawer" />
+      </template>
+      <template v-slot:append>
+        <v-btn icon @click="initSettings" @click.stop="settings.dialog = true" aria-label="Open Settings">
+          <v-icon :icon="settings.icon"></v-icon>
+        </v-btn>
+      </template>
       <v-dialog v-model="settings.dialog" max-width="600px">
         <v-card>
           <v-card-title>设置</v-card-title>
@@ -42,6 +33,16 @@
         </v-card>
       </v-dialog>
     </v-app-bar>
+    <v-navigation-drawer v-model="drawer">
+      <v-list nav density="compact">
+        <v-list-item v-for="item in list_items" :key="item.title" :to="item.link">
+          <template v-slot:prepend>
+            <v-icon :icon="item.icon"></v-icon>
+          </template>
+          <v-list-item-title v-text="item.title"></v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-main :style="content_style">
       <router-view />
     </v-main>
@@ -50,32 +51,37 @@
 
 <script>
 import { mdiHome, mdiHumanMaleBoard, mdiTools, mdiInformation, mdiCog } from "@mdi/js"
+import { useTheme } from 'vuetify'
+import lightBackgound from '@/assets/image/light.jpg'
+import darkBackgound from '@/assets/image/dark.jpg'
 
 export default {
-  props: { source: String },
   created() {
     try {
+      const theme = useTheme()
       document.body.removeChild(document.getElementById("app-loader"))
-      this.$vuetify.theme.dark = this.settings.theme.value
+      theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
     } catch {
       console.log("Have a nice day!")
     }
   },
   methods: {
     initSettings: function () {
-      this.settings.theme.value = this.$vuetify.theme.dark
+      const theme = useTheme()
+      this.settings.theme.value = theme.global.current.value.dark
     },
     saveSettings: function () {
-      this.$vuetify.theme.dark = this.settings.theme.value
+      const theme = useTheme()
+      theme.global.current.value = this.settings.theme.value ? 'dark' : 'light'
       this.settings.dialog = false;
     }
   },
   computed: {
     content_style: function () {
-      let image = this.$vuetify.theme.dark ? require('@/assets/image/dark.jpg') : require('@/assets/image/light.jpg')
+      const theme = useTheme()
       return {
         backgroundSize: 'cover',
-        backgroundImage: 'url(' + image + ')'
+        backgroundImage: 'url(' + (theme.global.current.value.dark ? darkBackgound : lightBackgound) + ')'
       }
     }
   },
