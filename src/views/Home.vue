@@ -5,15 +5,13 @@
         <v-data-iterator
           :items="postsData"
           :items-per-page.sync="itemsPerPage"
-          :page="page" sort-by="id" 
-          sort-desc
-          hide-default-footer
+          :page="page"
         >
           <template v-slot:default="props">
             <v-card
               class="pa-md-4 my-md-8 mb-4"
-              v-for="(postData, key) in props.items"
-              :key="key"
+              v-for="postData in props.items"
+              :key="postData.raw.id"
               :to="{ name: 'post', params: { id: postData.raw.id }}"
             >
               <v-card-title>{{ postData.raw.title }}</v-card-title>
@@ -21,7 +19,7 @@
             </v-card>
           </template>
           <template v-slot:footer>
-            <v-pagination v-model="page" :length="numberOfPages"></v-pagination>
+            <v-pagination v-model="page" :length="numberOfPages" density="comfortable"></v-pagination>
           </template>
         </v-data-iterator>
       </v-col>
@@ -41,7 +39,7 @@ export default {
     return {
       page: 1,
       itemsPerPage: 6,
-      postsData: postData
+      postsData: [...postData].reverse()
     }
   },
   computed: {

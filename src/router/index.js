@@ -19,11 +19,6 @@ export default createRouter({
       component: () => import('@/views/Malageed.vue')
     },
     {
-      path: '/tool',
-      name: 'tool',
-      component: () => import('@/views/Tool.vue')
-    },
-    {
       path: '/about',
       name: 'about',
       component: () => import('@/views/About.vue')

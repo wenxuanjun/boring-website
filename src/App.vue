@@ -1,17 +1,11 @@
-<style>
-.v-card {
-  border-radius: 12px !important;
-}
-</style>
-
 <template>
   <v-app>
     <v-app-bar>
       <template v-slot:prepend>
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Navigation Drawer" />
+        <v-app-bar-nav-icon @click="drawer = !drawer" aria-label="Navigation Drawer" />
       </template>
       <template v-slot:append>
-        <v-btn icon @click="initSettings" @click.stop="settings.dialog = true" aria-label="Open Settings">
+        <v-btn icon @click="initSettings" aria-label="Open Settings">
           <v-icon :icon="settings.icon"></v-icon>
         </v-btn>
       </template>
@@ -50,7 +44,7 @@
 </template>
 
 <script>
-import { mdiHome, mdiHumanMaleBoard, mdiTools, mdiInformation, mdiCog } from "@mdi/js"
+import { mdiHome, mdiHumanMaleBoard, mdiTools, mdiInformation } from "@mdi/js"
 import { useTheme } from 'vuetify'
 import lightBackgound from '@/assets/image/light.jpg'
 import darkBackgound from '@/assets/image/dark.jpg'
@@ -62,18 +56,19 @@ export default {
       document.body.removeChild(document.getElementById("app-loader"))
       theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
     } catch {
-      console.log("Have a nice day!")
+      console.log("Failed to init page, have a nice day!")
     }
   },
   methods: {
     initSettings: function () {
       const theme = useTheme()
       this.settings.theme.value = theme.global.current.value.dark
+      this.settings.dialog = true
     },
     saveSettings: function () {
       const theme = useTheme()
       theme.global.current.value = this.settings.theme.value ? 'dark' : 'light'
-      this.settings.dialog = false;
+      this.settings.dialog = false
     }
   },
   computed: {
@@ -90,11 +85,9 @@ export default {
       list_items: [
         { title: "Home", icon: mdiHome, link: "/" },
         { title: "Malageed", icon: mdiHumanMaleBoard, link: "/malageed" },
-        { title: "Tool", icon: mdiTools, link: "/tool" },
         { title: "About", icon: mdiInformation, link: "/about" }
       ],
       settings: {
-        icon: mdiCog,
         dialog: false,
         theme: {
           value: window.matchMedia('(prefers-color-scheme: dark)').matches,

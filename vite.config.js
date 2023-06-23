@@ -8,16 +8,8 @@ import viteCompression from 'vite-compression-plugin'
 
 export default defineConfig({
   clearScreen: false,
-  envPrefix: 'MIRROR_',
-  json: { stringify: false },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, './src')
-    }
-  },
   plugins: [
     viteVue(),
-    viteVuetify(),
     viteProgress(),
     viteHtml({
       minify: true,
@@ -26,12 +18,20 @@ export default defineConfig({
     viteCompression({
       loginfo: 'silent',
       algorithm: 'brotliCompress'
+    }),
+    viteVuetify({
+      styles: {
+        configFile: 'src/styles/variables.scss'
+      }
     })
   ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src')
+    }
+  },
   build: {
-    target: 'es2015',
     minify: 'terser',
-    cssTarget: 'chrome61',
     assetsInlineLimit: 65536,
     reportCompressedSize: false,
     terserOptions: {

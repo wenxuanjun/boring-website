@@ -5,25 +5,14 @@
         <v-card class="my-md-8 pa-md-4 mb-4">
           <v-card-title>最新动态</v-card-title>
           <v-divider></v-divider>
-          <v-list two-line>
-            <v-list-item v-for="news in news_group" :key="news.title">
-              <v-list-item-content>
-                <v-list-item-title>{{ news.title }}</v-list-item-title>
-                <v-list-item-subtitle>{{ news.subtitle }}</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
+          <v-list lines="two">
+            <v-list-item
+              v-for="news in news_group"
+              :key="news.title"
+              :title="news.title"
+              :subtitle="news.subtitle"
+            />
           </v-list>
-        </v-card>
-        <v-card class="pa-md-4">
-          <v-card-title>关于</v-card-title>
-          <v-card-text>
-            <p class="text-button">What is this</p>
-            <p>This is a boring website created by wendster.</p>
-            <p class="text-button">What can I do here</p>
-            <p>Nothing but find functions by yourself.</p>
-            <p class="text-button">Why I am here</p>
-            <p>I do not know.</p>
-          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
