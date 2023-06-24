@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" md="8" offset-md="2">
           <v-card class="my-md-8 pa-md-4">
-            <v-card-text>
+            <v-card-text class="markdown-body">
               <h2>目录</h2>
 
               <h3>初中部分（50篇）</h3>
@@ -595,33 +595,52 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-fab-transition>
-      <v-btn fixed bottom right fab v-scroll="onScroll" @click="toTop" v-show="fab">
-        <v-icon>{{ icon }}</v-icon>
-      </v-btn>
-    </v-fab-transition>
+    <v-layout-item
+      v-scroll="onScroll"
+      class="text-end"
+      model-value
+      position="bottom"
+      size="88"
+    >
+      <div class="ma-4">
+        <v-fab-transition>
+          <v-btn
+            v-show="fab.show"
+            class="mt-auto"
+            color="primary"
+            elevation="8"
+            :icon="fab.icon"
+            size="large"
+            @click="onClick"
+          />
+        </v-fab-transition>
+      </div>
+    </v-layout-item>
   </v-container>
 </template>
 
 <script>
 import { mdiChevronUp } from "@mdi/js"
+import "@/styles/markdown.css"
 
 export default {
   data() {
     return {
-      icon: mdiChevronUp,
-      fab: false,
+      fab: {
+        show: false,
+        icon: mdiChevronUp
+      }
     }
   },
   methods: {
     onScroll() {
-      if (typeof window === "undefined") return
-      const top = window.pageYOffset || document.documentElement.offsetTop || 0
-      this.fab = top > 300
+      this.fab.show = window.scrollY > 200
     },
-    toTop() {
-      this.$router.push({ hash: "" })
-      this.$vuetify.goTo(0)
+    onClick() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     }
   }
 }

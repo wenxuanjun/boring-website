@@ -1,34 +1,29 @@
 # Boring Website
 
-Just visit <https://wendster.fun>
+Just visit <https://wendster.one>
 
-### If you want you build it
-
-First of all, `nodejs` and `pnpm` are required.
-
-Then, clone the repository and enter it.
-
-```
-git clone https://github.com/wenxuanjun/boring-website
-cd boring-website
-```
+## How to use
 
 Fetch the dependencies.
 
-```
-pnpm i
+```bash
+pnpm install
 ```
 
-Build it.
+### Debug
 
+Then start the development server.
+
+```bash
+pnpm start
 ```
+
+### Build
+
+Build with this command.
+
+```bash
 pnpm build
 ```
 
 You will get the `dist` folder. Upload it to your server.
-
-Run this command if you feel like debuging it.
-
-```
-pnpm serve
-```
