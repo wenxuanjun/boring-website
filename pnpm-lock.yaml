@@ -35,9 +35,9 @@ dependencies:
   vite:
     specifier: ^4.3.9
     version: 4.3.9(sass@1.63.6)
-  vite-compression-plugin:
-    specifier: ^0.0.4
-    version: 0.0.4
+  vite-plugin-compression2:
+    specifier: ^0.10.1
+    version: 0.10.1
   vite-plugin-html:
     specifier: ^3.2.0
     version: 3.2.0(vite@4.3.9)
@@ -360,6 +360,24 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: false
+
+  /@rollup/pluginutils@5.0.2:
+    resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.1
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    dev: false
+
+  /@types/estree@1.0.1:
+    resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
     dev: false
 
   /@types/node@10.17.60:
@@ -1253,13 +1271,12 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /vite-compression-plugin@0.0.4:
-    resolution: {integrity: sha512-HvjhSAL+BDCqZIClYk8bbH7ozjIipf7Z5Bn5KEh+2Y0usTXvdyS20rQSM/EuF36WXBnksGyc5CJGqijf3Br0Ug==}
-    deprecated: migrate to vite-plugin-compression2
+  /vite-plugin-compression2@0.10.1:
+    resolution: {integrity: sha512-5EyF1+/yIMOGu2q47mnB05QzdPPPHx3a/0/+tdNpz+uhwstilXGZ/QOQL8B1y0VlxrDQ1tz9BH4iXQkF6Nd1gQ==}
     dependencies:
-      chalk: 4.1.2
-      fast-glob: 3.2.12
-      fs-extra: 10.1.0
+      '@rollup/pluginutils': 5.0.2
+    transitivePeerDependencies:
+      - rollup
     dev: false
 
   /vite-plugin-html@3.2.0(vite@4.3.9):

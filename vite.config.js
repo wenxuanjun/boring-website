@@ -1,23 +1,22 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import { createHtmlPlugin as viteHtml } from 'vite-plugin-html'
+import { createHtmlPlugin } from 'vite-plugin-html'
+import { compression } from 'vite-plugin-compression2'
 import viteVue from '@vitejs/plugin-vue'
 import viteVuetify from 'vite-plugin-vuetify'
 import viteProgress from 'vite-plugin-progress'
-import viteCompression from 'vite-compression-plugin'
 
 export default defineConfig({
   clearScreen: false,
   plugins: [
     viteVue(),
     viteProgress(),
-    viteHtml({
+    compression({
+      algorithm: 'brotliCompress'
+    }),
+    createHtmlPlugin({
       minify: true,
       entry: '/src/main.js'
-    }),
-    viteCompression({
-      loginfo: 'silent',
-      algorithm: 'brotliCompress'
     }),
     viteVuetify({
       styles: {
@@ -32,7 +31,6 @@ export default defineConfig({
   },
   build: {
     minify: 'terser',
-    assetsInlineLimit: 65536,
     reportCompressedSize: false,
     terserOptions: {
       compress: {

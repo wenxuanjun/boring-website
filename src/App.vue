@@ -2,7 +2,11 @@
   <v-app>
     <v-app-bar elevation="2">
       <template v-slot:prepend>
-        <v-app-bar-nav-icon color="default" @click="drawer = !drawer" />
+        <v-app-bar-nav-icon
+          color="default"
+          @click="drawer = !drawer"
+          aria-label="Navigation Drawer"
+        />
       </template>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer">
@@ -39,7 +43,7 @@ try {
   document.body.removeChild(loaderElement)
 } catch {}
 
-const drawer = ref(false)
+const drawer = ref(null)
 
 const theme = useTheme()
 const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches

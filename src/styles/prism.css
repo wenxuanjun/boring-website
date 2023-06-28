@@ -17,7 +17,7 @@
 
 .markdown-body pre {
 	color: #cfcfcf;
-	background: #363636;
+	background: rgba(160, 160, 160, .05);
 	padding: 1em;
 	margin-top: 0;
 	margin-bottom: 16px;
@@ -32,7 +32,7 @@
 
 .markdown-body :not(pre) > code {
 	color: #cfcfcf;
-	background: #363636;
+	background: rgba(160, 160, 160, .05);
 	border-radius: .5em;
 	padding: .2em .6em;
 	font-size: 0.85em;
