@@ -60,10 +60,12 @@
 }
 
 .markdown-body ul > li {
+    line-height: normal;
     list-style: inside;
 }
 
 .markdown-body ol > li {
+    line-height: normal;
     list-style-position: inside;
 }
 

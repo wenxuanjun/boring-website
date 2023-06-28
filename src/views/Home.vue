@@ -5,11 +5,11 @@
         <v-data-iterator
           :items="postsData"
           :items-per-page.sync="itemsPerPage"
-          :page="page"
+          :page="currentPage"
         >
           <template v-slot:default="props">
             <v-card
-              class="pa-md-4 my-md-8 mb-4"
+              class="pa-md-4 px-2 py-4 my-md-8 mb-4"
               v-for="postData in props.items"
               :key="postData.raw.id"
               :to="{ name: 'post', params: { id: postData.raw.id }}"
@@ -19,7 +19,7 @@
             </v-card>
           </template>
           <template v-slot:footer>
-            <v-pagination v-model="page" :length="numberOfPages" density="comfortable"></v-pagination>
+            <v-pagination v-model="currentPage" :length="numberOfPages" density="comfortable"></v-pagination>
           </template>
         </v-data-iterator>
       </v-col>
@@ -27,25 +27,16 @@
   </v-container>
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from 'vue'
 import { VDataIterator } from 'vuetify/labs/VDataIterator'
 import postData from "@/blog/posts.json"
 
-export default {
-  components: {
-    VDataIterator,
-  },
-  data() {
-    return {
-      page: 1,
-      itemsPerPage: 6,
-      postsData: [...postData].reverse()
-    }
-  },
-  computed: {
-    numberOfPages() {
-      return Math.ceil(this.postsData.length / this.itemsPerPage)
-    }
-  }
-}
+const currentPage = ref(1)
+const itemsPerPage = ref(6)
+const postsData = ref([...postData].reverse())
+
+const numberOfPages = computed(() => {
+  return Math.ceil(postsData.value.length / itemsPerPage.value)
+})
 </script>

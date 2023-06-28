@@ -14,11 +14,6 @@ export default createRouter({
       component: () => import('@/views/Post.vue')
     },
     {
-      path: '/malageed',
-      name: 'malageed',
-      component: () => import('@/views/Malageed.vue')
-    },
-    {
       path: '/about',
       name: 'about',
       component: () => import('@/views/About.vue')
