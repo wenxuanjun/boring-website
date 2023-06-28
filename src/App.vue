@@ -28,27 +28,25 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useTheme } from 'vuetify'
-import { mdiHome, mdiHumanMaleBoard, mdiInformation } from '@mdi/js'
+import { mdiHome, mdiInformation } from '@mdi/js'
 import lightBackgound from '@/assets/light.jpg'
 import darkBackgound from '@/assets/dark.jpg'
 
 try {
-  const theme = useTheme()
-  document.body.removeChild(document.getElementById("app-loader"))
-  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-} catch {
-  console.log("Failed to init page, have a nice day!")
-}
+  const loaderElement = document.getElementById("app-loader")
+  document.body.removeChild(loaderElement)
+} catch {}
 
 const drawer = ref(false)
 
-const contentStyle = computed(() => {
-  const theme = useTheme()
-  return {
-    backgroundSize: 'cover',
-    backgroundImage: 'url(' + (theme.global.current.value.dark ? darkBackgound : lightBackgound) + ')'
-  }
-})
+const theme = useTheme()
+const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+theme.global.name.value = darkTheme ? 'dark' : 'light'
+
+const contentStyle = {
+  backgroundSize: 'cover',
+  backgroundImage: 'url(' + (darkTheme ? darkBackgound : lightBackgound) + ')'
+}
 </script>
