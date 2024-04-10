@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import App from '@/App.vue'
-import vuetify from '@/plugins/vuetify'
-import router from '@/router/index'
+import vuetify from '@/vuetify'
+import router from '@/router'
+
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import '@/styles/variables.scss'
@@ -13,7 +14,7 @@ import '@fontsource/roboto/latin-700.css'
 
 const app = createApp(App)
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((_to, _from, next) => {
   NProgress.start()
   next()
 })

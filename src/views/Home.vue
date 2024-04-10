@@ -19,7 +19,13 @@
             </v-card>
           </template>
           <template v-slot:footer>
-            <v-pagination v-model="currentPage" :length="numberOfPages" density="comfortable"></v-pagination>
+            <v-pagination
+              v-model="currentPage"
+              variant="elevated"
+              active-color="blue-darken-2"
+              :length="numberOfPages"
+              density="comfortable"
+            />
           </template>
         </v-data-iterator>
       </v-col>
@@ -29,14 +35,10 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { VDataIterator } from 'vuetify/labs/VDataIterator'
 import postData from "@/blog/posts.json"
 
 const currentPage = ref(1)
 const itemsPerPage = ref(6)
 const postsData = ref([...postData].reverse())
-
-const numberOfPages = computed(() => {
-  return Math.ceil(postsData.value.length / itemsPerPage.value)
-})
+const numberOfPages = computed(() => Math.ceil(postsData.value.length / itemsPerPage.value))
 </script>

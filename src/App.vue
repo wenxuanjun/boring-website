@@ -5,7 +5,6 @@
         <v-app-bar-nav-icon
           color="default"
           @click="drawer = !drawer"
-          aria-label="Navigation Drawer"
         />
       </template>
     </v-app-bar>
@@ -35,8 +34,8 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify'
 import { mdiHome, mdiInformation } from '@mdi/js'
-import lightBackgound from '@/assets/light.jpg'
-import darkBackgound from '@/assets/dark.jpg'
+import darkBackground from '@/assets/bg-light.svg'
+import lightBackground from '@/assets/bg-dark.svg'
 
 try {
   const loaderElement = document.getElementById("app-loader")
@@ -51,6 +50,6 @@ theme.global.name.value = darkTheme ? 'dark' : 'light'
 
 const contentStyle = {
   backgroundSize: 'cover',
-  backgroundImage: 'url(' + (darkTheme ? darkBackgound : lightBackgound) + ')'
+  backgroundImage: 'url(' + (darkTheme ? darkBackground : lightBackground) + ')'
 }
 </script>

@@ -25,10 +25,17 @@
 }
 
 .markdown-body a {
+    color: #1976D2;
     -webkit-text-decoration: none;
     text-decoration: none;
     font-weight: 700;
     letter-spacing: .5px;
+}
+
+@media(prefers-color-scheme: dark) {
+	.markdown-body a {
+        color: #2196F3;
+    }
 }
 
 .markdown-body a :hover {
@@ -46,6 +53,15 @@
     border-left: .3em solid rgba(160, 160, 160, .6);
 }
 
+.markdown-body blockquote ul, ol {
+    padding-left: 0 !important;
+    padding: 16px 0;
+}
+
+.markdown-body blockquote ul, ol > li {
+    line-height: 1.8em !important;
+}
+
 .markdown-body blockquote > p {
     padding: 16px 0;
 }
@@ -57,6 +73,7 @@
 .markdown-body ul, ol {
     padding-left: 1em;
     padding-bottom: 16px;
+    line-height: 1.8em;
 }
 
 .markdown-body ul > li {

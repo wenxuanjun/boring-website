@@ -7,7 +7,7 @@
             {{ currentPostData.title }}
           </v-card-title>
           <v-card-text>
-            <div class="markdown-body" v-html="getPostText()"></div>
+            <div class="markdown-body" v-html="renderedText"></div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -18,7 +18,6 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import MarkdownIt from "markdown-it"
-import pangu from 'markdown-it-pangu'
 import prism from "markdown-it-prism"
 import "prismjs/components/prism-bash"
 import "prismjs/components/prism-c"
@@ -35,12 +34,15 @@ import "@/styles/markdown.css"
 const route = useRoute()
 const currentPostData = postData[route.params.id - 1]
 
-const getPostText = () => {
-  const parser = new MarkdownIt()
-  parser.use(pangu).use(prism)
-  return parser.render((() => {
-    const files = import.meta.glob("@/blog/markdown/*.md", { as: 'raw', eager: true })
-    return Object.entries(files).find(([key]) => key.includes(`markdown/${route.params.id}.md`))[1]
-  })())
-}
+const markdownFiles = Object.entries(import.meta.glob(
+  "@/blog/markdown/*.md",
+  { query: '?raw', import: 'default', eager: true }
+))
+
+const targetFileKey = `markdown/${route.params.id}.md`
+const targetFileEntry = markdownFiles.find(([key]) => key.includes(targetFileKey))
+
+const parser = new MarkdownIt()
+parser.use(prism)
+const renderedText = parser.render(targetFileEntry[1])
 </script>
