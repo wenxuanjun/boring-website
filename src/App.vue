@@ -50,6 +50,6 @@ theme.global.name.value = darkTheme ? 'dark' : 'light'
 
 const contentStyle = {
   backgroundSize: 'cover',
-  backgroundImage: 'url(' + (darkTheme ? darkBackground : lightBackground) + ')'
+  backgroundImage: 'url("' + (darkTheme ? darkBackground : lightBackground) + '")'
 }
 </script>
