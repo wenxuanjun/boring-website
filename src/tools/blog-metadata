@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+/* eslint no-undef: 0 */
+
+import * as fs from 'fs'
+import * as glob from 'glob'
+
+import MarkdownIt from "markdown-it"
+import MarkdownItMeta from "markdown-it-meta"
+
+const getConfigFromArgs = () => {
+  const config = {
+    verbose: false,
+    input_path: null,
+    output_file: null,
+    summary_length: 150
+  }
+  const args = process.argv.slice(2)
+
+  for (let i = 0; i < args.length; i++) {
+    switch (args[i]) {
+      case '-i':
+        config.input_path = args[++i]
+        break
+      case '-o':
+        config.output_file = args[++i]
+        break
+      case '-s':
+        config.summary_length = parseInt(args[++i])
+        break
+      case '--verbose':
+        config.verbose = true
+        break
+      default:
+        console.error('Unknown argument:', args[i])
+        process.exit(1)
+    }
+  }
+
+  if (!config.input_path || !config.input_path) {
+    console.error('No input glob path or output file specified!')
+    process.exit(1)
+  }
+
+  return config
+}
+
+(function main() {
+  const config = getConfigFromArgs()
+  const files = glob.globSync(config.input_path)
+
+  const parser = new MarkdownIt()
+  parser.use(MarkdownItMeta)
+
+  const logPrefix = '[BlogMetadata]'
+  const blogMetadata = files.map(file => {
+    config.verbose && console.log(`${logPrefix} Processing file: ${file}`)
+    const renderedText = parser.render(fs.readFileSync(file, 'utf8'))
+    const fileNameNoExt = file.split('/').pop().replace('.md', '')
+
+    parser.meta.id = fileNameNoExt
+    parser.meta.summary = renderedText
+      .replace(/<[^>]*>/g, '')
+      .replace(/\n/g, ' ')
+      .replace(/\s+/g, ' ')
+      .slice(0, config.summary_length)
+      .concat('...')
+
+    return parser.meta
+  })
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+
+  fs.writeFileSync(config.output_file, JSON.stringify(blogMetadata, null, 4))
+  console.log(`${logPrefix} Processed ${files.length} files.`)
+}())

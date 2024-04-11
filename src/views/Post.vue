@@ -18,7 +18,8 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import MarkdownIt from "markdown-it"
-import prism from "markdown-it-prism"
+import MarkdownItPrism from "markdown-it-prism"
+import MarkdownItMeta from "markdown-it-meta"
 import "prismjs/components/prism-bash"
 import "prismjs/components/prism-c"
 import "prismjs/components/prism-clike"
@@ -27,12 +28,16 @@ import "prismjs/components/prism-javascript"
 import "prismjs/components/prism-markup"
 import "prismjs/components/prism-python"
 import "prismjs/components/prism-kotlin"
-import postData from "@/blog/posts.json"
+import postsData from "@/blog/metadata.json"
 import "@/styles/prism.css"
 import "@/styles/markdown.css"
 
 const route = useRoute()
-const currentPostData = postData[route.params.id - 1]
+const currentPostData = postsData.find(post => post.id === route.params.id)
+
+const parser = new MarkdownIt()
+parser.use(MarkdownItMeta)
+parser.use(MarkdownItPrism)
 
 const markdownFiles = Object.entries(import.meta.glob(
   "@/blog/markdown/*.md",
@@ -41,8 +46,5 @@ const markdownFiles = Object.entries(import.meta.glob(
 
 const targetFileKey = `markdown/${route.params.id}.md`
 const targetFileEntry = markdownFiles.find(([key]) => key.includes(targetFileKey))
-
-const parser = new MarkdownIt()
-parser.use(prism)
 const renderedText = parser.render(targetFileEntry[1])
 </script>

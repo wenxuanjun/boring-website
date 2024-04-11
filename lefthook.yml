@@ -3,3 +3,5 @@ pre-commit:
   commands:
     autocorrect:
       run: node src/tools/autocorrect src/**/*.md
+    blog-metadata:
+      run: node src/tools/blog-metadata -i src/**/*.md -o src/blog/metadata.json

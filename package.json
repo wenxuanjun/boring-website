@@ -7,7 +7,8 @@
     "serve": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "autocorrect": "node src/tools/autocorrect src/**/*.md --verbose"
+    "autocorrect": "node src/tools/autocorrect src/**/*.md --verbose",
+    "blog-metadata": "node src/tools/blog-metadata -i src/**/*.md -o src/blog/metadata.json"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.12",
@@ -17,6 +18,8 @@
     "glob": "^10.3.12",
     "lefthook": "^1.6.9",
     "markdown-it": "^14.1.0",
+    "markdown-it-front-matter": "^0.2.4",
+    "markdown-it-meta": "^0.0.1",
     "markdown-it-prism": "^2.3.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.29.0",
