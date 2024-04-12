@@ -1,9 +1,6 @@
 .markdown-body h1, h2, h3, h4, h5, h6 {
-    padding-bottom: 16px;
-}
-
-.markdown-body a :hover {
-    outline-width: 0;
+    margin-top: 0;
+    margin-bottom: 16px;
 }
 
 .markdown-body strong {
@@ -44,10 +41,12 @@
 }
 
 .markdown-body blockquote {
+    width: 100%;
     margin-left: 0;
     margin-bottom: 16px;
     padding-left: 16px;
     font-style: italic;
+    border-radius: 4px;
     color: rgb(160, 160, 160);
     background-color: rgba(160, 160, 160, .05);
     border-left: .3em solid rgba(160, 160, 160, .6);

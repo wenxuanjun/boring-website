@@ -2,13 +2,21 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="8" offset-md="2">
-        <v-data-iterator :items="postsData" :items-per-page.sync="itemsPerPage" :page="currentPage">
+        <v-data-iterator
+          :items="postsData"
+          :items-per-page.sync="itemsPerPage"
+          :page="currentPage"
+        >
           <template v-slot:default="props">
-            <v-card class="pa-md-4 px-2 py-4 my-md-8 mb-4" v-for="postData in props.items" :key="postData.raw.id"
-              :to="{ name: 'post', params: { id: postData.raw.id } }">
+            <v-card
+              class="pa-md-4 px-2 py-4 my-md-8 mb-4"
+              v-for="postData in props.items"
+              :key="postData.raw.id"
+              :to="{ name: 'post', params: { id: postData.raw.id } }"
+            >
               <v-card-title>{{ postData.raw.title }}</v-card-title>
               <v-card-text class="py-0">
-                <div class="text-grey" style="line-height: normal">
+                <div class="text-medium-emphasis" style="line-height: normal">
                   {{ postData.raw.summary }}
                 </div>
                 <div class="pt-4">
@@ -21,8 +29,13 @@
             </v-card>
           </template>
           <template v-slot:footer>
-            <v-pagination v-model="currentPage" variant="elevated" active-color="blue-darken-2" :length="numberOfPages"
-              density="comfortable" />
+            <v-pagination
+              v-model="currentPage"
+              variant="elevated"
+              active-color="blue-darken-2"
+              :length="numberOfPages"
+              density="comfortable"
+            />
           </template>
         </v-data-iterator>
       </v-col>
