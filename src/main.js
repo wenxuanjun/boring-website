@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import App from '@/App.vue'
 import vuetify from '@/vuetify'
 import router from '@/router'
+import { createHead } from '@unhead/vue'
+import { InferSeoMetaPlugin } from '@unhead/addons'
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -24,4 +26,6 @@ router.afterEach(() => {
   NProgress.done()
 })
 
-app.use(vuetify).use(router).mount('#app')
+const head = createHead()
+
+app.use(vuetify).use(router).use(head).mount('#app')

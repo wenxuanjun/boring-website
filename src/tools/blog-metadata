@@ -10,8 +10,8 @@ import MarkdownItMeta from "markdown-it-meta"
 const getConfigFromArgs = () => {
   const config = {
     verbose: false,
-    input_path: null,
-    output_file: null,
+    input_path: "",
+    output_file: "",
     summary_length: 150
   }
   const args = process.argv.slice(2)

@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import UnheadVite from '@unhead/addons/vite'
 import viteVue from '@vitejs/plugin-vue'
 import viteVuetify from 'vite-plugin-vuetify'
 import viteCompression from 'vite-plugin-compression'
@@ -8,6 +9,7 @@ import viteCompression from 'vite-plugin-compression'
 export default defineConfig({
   plugins: [
     viteVue(),
+    UnheadVite(),
     viteCompression({
       algorithm: 'brotliCompress'
     }),
